@@ -193,6 +193,18 @@
   max-width: 380px;
   margin-inline: auto;
 }
+/* --- botones de salida del bot de contacto --- */
+.chat-salida {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: var(--e2);
+  max-width: 380px;
+  margin-inline: auto;
+  animation: chatEntra 0.5s var(--curva) both;
+}
+
+.chat-salida .boton { align-self: stretch; justify-content: center; }
 
 @media (max-width: 900px) {
   .demo-marco { grid-template-columns: 1fr; gap: var(--e3); }
