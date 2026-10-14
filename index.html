@@ -10,18 +10,25 @@
   <link rel="canonical" href="https://www.somosseda.com/">
   <link rel="alternate" hreflang="es" href="https://www.somosseda.com/">
   <link rel="alternate" hreflang="en" href="https://www.somosseda.com/?lang=en">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hubot+Sans:wght@200;400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/sitio.css">
 </head>
 
 <body>
 
-  <header>
-    <a href="/">
-      <strong>S</strong>
-      <span>SEDA</span>
+  <header class="sitio-header" id="encabezado">
+    <a href="/" class="marca">
+      <span class="glifo">S</span>
+      <span class="nombre">SEDA</span>
     </a>
 
-    <nav>
-      <a href="/" data-t="nav.inicio">Inicio</a>
+    <nav class="sitio-nav">
+      <a href="/" aria-current="page" data-t="nav.inicio">Inicio</a>
       <a href="/automatizacion.html" data-t="nav.automatizacion">Automatización</a>
       <a href="/sitios.html" data-t="nav.sitios">Sitios y tiendas</a>
       <a href="/contacto.html" data-t="nav.contacto">Contacto</a>
@@ -39,56 +46,73 @@
 
   <main>
 
-    <section id="hero">
-      <p data-t="hero.marca">Sistemas y Educación Digital Automatizada</p>
+    <section class="hero limite">
+      <p class="dato" data-t="hero.marca">Sistemas y Educación Digital Automatizada</p>
       <h1 data-t="hero.titulo">Automatización inteligente para negocios que quieren crecer</h1>
-      <p data-t="hero.bajada">Diagnosticamos, diseñamos y acompañamos — para que tu negocio atienda mejor y se vea mejor.</p>
-      <a href="https://wa.me/524461113272" data-t="hero.cta">Hablemos</a>
+      <p class="bajada" data-t="hero.bajada">Diagnosticamos, diseñamos y acompañamos — para que tu negocio atienda mejor y se vea mejor.</p>
+      <a href="https://wa.me/524461113272" class="boton lleno" data-t="hero.cta">Hablemos</a>
     </section>
 
-    <section id="que-hacemos">
-      <h2 data-t="que.titulo">Qué hace SEDA</h2>
-      <p data-t="que.p1">Hay problemas de negocio que no se resuelven con más horas de trabajo.</p>
-      <p data-t="que.p2">SEDA es un estudio de automatización en Querétaro.</p>
+    <section class="seccion-alterna">
+      <div class="limite">
+        <div class="encabezado-seccion aparece">
+          <h2 data-t="que.titulo">Qué hace SEDA</h2>
+        </div>
+        <div class="texto-largo aparece">
+          <p data-t="que.p1">Hay problemas de negocio que no se resuelven con más horas de trabajo.</p>
+          <p data-t="que.p2">SEDA es un estudio de automatización en Querétaro.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="servicios">
-      <h2 data-t="serv.titulo">En qué trabajamos</h2>
+    <section>
+      <div class="limite">
+        <div class="encabezado-seccion aparece">
+          <h2 data-t="serv.titulo">En qué trabajamos</h2>
+        </div>
 
-      <article>
-        <h3 data-t="serv.atencion.titulo">Atención automatizada</h3>
-        <p data-t="serv.atencion.desc">Bots que atienden las 24 horas.</p>
-        <p data-t="serv.atencion.ejemplo">Ejemplo real.</p>
-        <a href="/automatizacion.html" data-t="serv.ver">Ver más</a>
-      </article>
+        <div class="rejilla aparece">
 
-      <article>
-        <h3 data-t="serv.medida.titulo">Sistemas a la medida</h3>
-        <p data-t="serv.medida.desc">Software propio.</p>
-        <p data-t="serv.medida.ejemplo">Ejemplo real.</p>
-        <a href="/automatizacion.html" data-t="serv.ver">Ver más</a>
-      </article>
+          <article class="tarjeta">
+            <h3 data-t="serv.atencion.titulo">Atención automatizada</h3>
+            <p data-t="serv.atencion.desc">Bots que atienden las 24 horas.</p>
+            <p class="ejemplo" data-t="serv.atencion.ejemplo">Ejemplo real.</p>
+            <a href="/automatizacion.html" class="enlace" data-t="serv.ver">Ver más</a>
+          </article>
 
-      <article>
-        <h3 data-t="serv.sitios.titulo">Sitios y tiendas</h3>
-        <p data-t="serv.sitios.desc">Sin plantillas.</p>
-        <a href="/sitios.html" data-t="serv.ver">Ver más</a>
-      </article>
+          <article class="tarjeta">
+            <h3 data-t="serv.medida.titulo">Sistemas a la medida</h3>
+            <p data-t="serv.medida.desc">Software propio.</p>
+            <p class="ejemplo" data-t="serv.medida.ejemplo">Ejemplo real.</p>
+            <a href="/automatizacion.html" class="enlace" data-t="serv.ver">Ver más</a>
+          </article>
+
+          <article class="tarjeta">
+            <h3 data-t="serv.sitios.titulo">Sitios y tiendas</h3>
+            <p data-t="serv.sitios.desc">Sin plantillas.</p>
+            <a href="/sitios.html" class="enlace" data-t="serv.ver">Ver más</a>
+          </article>
+
+        </div>
+      </div>
     </section>
 
-    <section id="cierre">
-      <h2 data-t="cierre.titulo">¿Tienes un problema que se repite todos los días?</h2>
-      <p data-t="cierre.p">Cuéntamelo y te digo si se puede automatizar.</p>
-      <a href="https://wa.me/524461113272" data-t="cierre.cta">Escríbeme por WhatsApp</a>
+    <section class="seccion-alterna">
+      <div class="limite cierre aparece">
+        <h2 data-t="cierre.titulo">¿Tienes un problema que se repite todos los días?</h2>
+        <p data-t="cierre.p">Cuéntamelo y te digo si se puede automatizar.</p>
+        <a href="https://wa.me/524461113272" class="boton" data-t="cierre.cta">Escríbeme por WhatsApp</a>
+      </div>
     </section>
 
   </main>
 
-  <footer>
-    <p data-t="pie.marca">SEDA — Sistemas y Educación Digital Automatizada</p>
-    <p data-t="pie.lugar">Querétaro, México</p>
+  <footer class="sitio-pie limite">
+    <p class="dato" data-t="pie.marca">SEDA — Sistemas y Educación Digital Automatizada</p>
+    <p class="dato" data-t="pie.lugar">Querétaro, México</p>
   </footer>
 
   <script src="/assets/js/idioma.js"></script>
+  <script src="/assets/js/sitio.js"></script>
 </body>
 </html>
