@@ -437,7 +437,8 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
   .idiomas button { padding: 0.42rem 0.7rem; font-size: 0.74rem; gap: 0.3rem; }
 }
 
+/* Las banderitas se quedan en TODOS los anchos: medido, en 320px
+   (iPhone SE) todavía sobran 39px en el header. No ocultarlas. */
 @media (max-width: 420px) {
-  .idiomas button span[aria-hidden] { display: none; }
   .sitio-nav a { font-size: 1.65rem; }
 }
