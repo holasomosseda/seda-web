@@ -11,29 +11,18 @@
   if (!caja) return;
 
   const WHATSAPP = '524461113272';
-  const CORREO   = 'holasomosseda@gmail.com';
 
-  const hilo   = caja.querySelector('.chat-hilo');
-  const forma  = caja.querySelector('.chat-forma');
-  const campo  = caja.querySelector('.chat-campo');
-  const salida = caja.querySelector('.chat-salida');
+  const hilo  = caja.querySelector('.chat-hilo');
+  const forma = caja.querySelector('.chat-forma');
+  const campo = caja.querySelector('.chat-campo');
 
   const PASOS = [
-    {
-      clave: 'negocio',
-      pregunta: '¿A qué se dedica tu negocio?',
-      pista: 'Panadería, escuela de idiomas, tienda de ropa…'
-    },
-    {
-      clave: 'problema',
-      pregunta: 'Perfecto. ¿Qué es lo que repites todos los días y te gustaría quitarte de encima?',
-      pista: 'Contestar los mismos mensajes, agendar citas, cotizar…'
-    },
-    {
-      clave: 'nombre',
-      pregunta: 'Va. ¿Cómo te llamas?',
-      pista: 'Tu nombre'
-    }
+    { clave: 'negocio',  pregunta: '¿A qué se dedica tu negocio?',
+      pista: 'Panadería, escuela de idiomas, tienda de ropa…' },
+    { clave: 'problema', pregunta: 'Perfecto. ¿Qué es lo que repites todos los días y te gustaría quitarte de encima?',
+      pista: 'Contestar los mismos mensajes, agendar citas, cotizar…' },
+    { clave: 'nombre',   pregunta: 'Va. ¿Cómo te llamas?',
+      pista: 'Tu nombre' }
   ];
 
   let paso = 0;
@@ -81,24 +70,29 @@
          + `Me gustaría ver si se puede automatizar.`;
   }
 
+  /* el botón se crea YA con su enlace dentro del chat */
+  function ponerBoton() {
+    const enlace = document.createElement('a');
+    enlace.className = 'chat-accion';
+    enlace.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(armarMensaje())}`;
+    enlace.target = '_blank';
+    enlace.rel = 'noopener';
+    enlace.innerHTML = '<span>Enviar esto por WhatsApp</span>';
+    hilo.appendChild(enlace);
+    hilo.scrollTop = hilo.scrollHeight;
+  }
+
   function cerrar() {
     const resumen = `Esto es lo que entendí:\n\n`
                   + `Negocio: ${datos.negocio}\n`
-                  + `A resolver: ${datos.problema}\n\n`
-                  + `${datos.nombre}, con esto ya puedo decirte algo útil. Elige por dónde seguimos.`;
+                  + `A resolver: ${datos.problema}`;
 
     responder(resumen, 1000, () => {
-      const texto = armarMensaje();
-      salida.querySelector('.ir-whatsapp').href =
-        `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
-      salida.querySelector('.ir-correo').href =
-        `mailto:${CORREO}?subject=${encodeURIComponent('Consulta desde somosseda.com')}`
-        + `&body=${encodeURIComponent(texto)}`;
-
-      caja.classList.add('terminado');
-      salida.hidden = false;
-      terminado = true;
-      salida.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      responder(`${datos.nombre}, con esto ya puedo decirte algo útil. Pica el botón y te llega el mensaje ya escrito — solo le das enviar.`, 850, () => {
+        ponerBoton();
+        caja.classList.add('terminado');
+        terminado = true;
+      });
     });
   }
 
