@@ -21,7 +21,7 @@ if (porAparecer.length && 'IntersectionObserver' in window) {
     entradas.forEach((entrada) => {
       if (entrada.isIntersecting) {
         entrada.target.classList.add('visible');
-        vigilante.unobserve(entrada.target);   // una sola vez, nunca se repite
+        vigilante.unobserve(entrada.target);
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
@@ -30,3 +30,12 @@ if (porAparecer.length && 'IntersectionObserver' in window) {
 } else {
   porAparecer.forEach((el) => el.classList.add('visible'));
 }
+
+/* --- el resplandor de las tarjetas sigue al cursor --- */
+document.querySelectorAll('.tarjeta').forEach((tarjeta) => {
+  tarjeta.addEventListener('pointermove', (e) => {
+    const caja = tarjeta.getBoundingClientRect();
+    tarjeta.style.setProperty('--mx', `${e.clientX - caja.left}px`);
+    tarjeta.style.setProperty('--my', `${e.clientY - caja.top}px`);
+  });
+});
