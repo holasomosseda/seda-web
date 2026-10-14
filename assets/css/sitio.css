@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--e3);
-  padding: var(--e2) var(--margen);
+  padding: var(--e3) var(--margen);
   background: transparent;
   transition: background var(--medio) var(--curva),
               backdrop-filter var(--medio) var(--curva),
@@ -25,40 +25,39 @@
 }
 
 .sitio-header.pegado {
-  background: rgba(0, 26, 36, 0.72);
-  backdrop-filter: blur(18px) saturate(1.2);
+  background: rgba(0, 20, 28, 0.6);
+  backdrop-filter: blur(20px) saturate(1.3);
   border-bottom-color: var(--linea);
-  padding-block: 0.7rem;
+  padding-block: var(--e2);
 }
 
-/* --- CAMBIO: la S arriba, SEDA debajo --- */
 .marca {
   display: flex;
   flex-direction: column;
   align-items: center;
   line-height: 1;
   flex-shrink: 0;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 .marca .glifo {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 2.1rem;
+  font-size: 3.2rem;
   line-height: 0.85;
   transition: font-size var(--medio) var(--curva);
 }
 
 .marca .nombre {
-  font-size: 0.62rem;
-  letter-spacing: 0.42em;
+  font-size: 0.82rem;
+  letter-spacing: 0.44em;
   font-weight: 400;
-  text-indent: 0.42em;   /* compensa el espacio sobrante de la última letra */
+  text-indent: 0.44em;
   color: var(--crema-tenue);
   transition: font-size var(--medio) var(--curva);
 }
 
-.sitio-header.pegado .marca .glifo { font-size: 1.6rem; }
-.sitio-header.pegado .marca .nombre { font-size: 0.55rem; }
+.sitio-header.pegado .marca .glifo { font-size: 2.3rem; }
+.sitio-header.pegado .marca .nombre { font-size: 0.72rem; }
 
 /* --- navegación --- */
 
@@ -70,7 +69,7 @@
 
 .sitio-nav a {
   position: relative;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   padding-block: 0.4rem;
   color: var(--crema-tenue);
   transition: color var(--rapido) var(--curva);
@@ -105,9 +104,9 @@
   background: transparent;
   border: 1px solid var(--linea);
   border-radius: 999px;
-  padding: 0.35rem 0.75rem;
+  padding: 0.5rem 1rem;
   font-family: var(--fuente-dato);
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   letter-spacing: 0.12em;
   color: var(--crema-tenue);
   cursor: pointer;
