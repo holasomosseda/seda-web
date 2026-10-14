@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contacto — SEDA</title>
+  <meta name="description" content="Cuéntame qué repites todos los días en tu negocio y te digo si se puede automatizar.">
+
+  <link rel="canonical" href="https://www.somosseda.com/contacto.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hubot+Sans:wght@200;400&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/sitio.css">
+  <link rel="stylesheet" href="/assets/css/atmosfera.css">
+  <link rel="stylesheet" href="/assets/css/demo.css">
+</head>
+
+<body>
+
+  <header class="sitio-header" id="encabezado">
+    <a href="/" class="marca">
+      <span class="glifo">S</span>
+      <span class="nombre">SEDA</span>
+    </a>
+
+    <nav class="sitio-nav">
+      <a href="/" data-t="nav.inicio">Inicio</a>
+      <a href="/automatizacion.html" data-t="nav.automatizacion">Automatización</a>
+      <a href="/sitios.html" data-t="nav.sitios">Sitios y tiendas</a>
+      <a href="/contacto.html" aria-current="page" data-t="nav.contacto">Contacto</a>
+    </nav>
+
+    <div class="idiomas">
+      <button type="button" data-lang-btn="es" aria-pressed="true" title="Español">
+        <span aria-hidden="true">🇲🇽</span> ES
+      </button>
+      <button type="button" data-lang-btn="en" aria-pressed="false" title="English">
+        <span aria-hidden="true">🇺🇸</span> EN
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero limite">
+      <p class="dato" data-t="cont.marca">Contacto</p>
+      <h1 data-t="cont.titulo">Cuéntame el problema</h1>
+      <p class="bajada" data-t="cont.bajada">No necesito que sepas qué solución quieres. Necesito saber qué te quita tiempo. De ahí sale todo lo demás.</p>
+    </section>
+
+    <section class="seccion-alterna">
+      <div class="limite demo-marco">
+
+        <div class="demo-texto aparece">
+          <p class="dato" data-t="cont.etiqueta">Treinta segundos</p>
+          <h2 data-t="cont.chat.titulo">Deja que el bot tome tu caso</h2>
+          <p data-t="cont.chat.p1">Tres preguntas y te armo el mensaje listo para enviar. Así cuando hablemos ya sé de qué se trata y no empezamos de cero.</p>
+          <p data-t="cont.chat.p2">Y sí: este bot es también una muestra. Es exactamente el tipo de cosa que construimos para que un negocio reciba prospectos con contexto en lugar de un «hola, info».</p>
+        </div>
+
+        <div>
+          <div class="chat" id="bot-contacto">
+            <div class="chat-barra">
+              <div class="chat-avatar">S</div>
+              <div class="chat-quien">
+                <strong>SEDA</strong>
+                <span data-t="demo.estado">EN LÍNEA</span>
+              </div>
+            </div>
+
+            <div class="chat-hilo"></div>
+
+            <form class="chat-forma" autocomplete="off">
+              <input class="chat-campo" type="text" placeholder="Escribe aquí…" aria-label="Tu respuesta">
+              <button class="chat-enviar" type="submit" aria-label="Enviar">↑</button>
+            </form>
+          </div>
+
+          <div class="chat-salida" hidden>
+            <a class="boton lleno ir-whatsapp" href="#" data-t="cont.ir.whatsapp">Enviar por WhatsApp</a>
+            <a class="boton ir-correo" href="#" data-t="cont.ir.correo">Enviar por correo</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="limite">
+        <div class="encabezado-seccion aparece">
+          <h2 data-t="cont.directo.titulo">O directo, sin rodeos</h2>
+        </div>
+
+        <div class="rejilla aparece">
+
+          <article class="tarjeta">
+            <h3 data-t="cont.wa.titulo">WhatsApp</h3>
+            <p data-t="cont.wa.desc">Lo más rápido. Contesto el mismo día.</p>
+            <a href="https://wa.me/524461113272" class="enlace">+52 446 111 3272</a>
+          </article>
+
+          <article class="tarjeta">
+            <h3 data-t="cont.mail.titulo">Correo</h3>
+            <p data-t="cont.mail.desc">Para propuestas, documentos o si prefieres dejarlo por escrito.</p>
+            <a href="mailto:holasomosseda@gmail.com" class="enlace">holasomosseda@gmail.com</a>
+          </article>
+
+          <article class="tarjeta">
+            <h3 data-t="cont.donde.titulo">Dónde estamos</h3>
+            <p data-t="cont.donde.desc">Querétaro, México. Trabajamos en remoto con negocios de cualquier ciudad, y en persona cuando el proyecto lo pide.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="sitio-pie limite">
+    <p class="dato" data-t="pie.marca">SEDA — Sistemas y Educación Digital Automatizada</p>
+    <p class="dato" data-t="pie.lugar">Querétaro, México</p>
+  </footer>
+
+  <script src="/assets/js/atmosfera.js"></script>
+  <script src="/assets/js/idioma.js"></script>
+  <script src="/assets/js/sitio.js"></script>
+  <script src="/assets/js/contacto.js"></script>
+</body>
+</html>
