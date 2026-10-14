@@ -26,6 +26,7 @@
 .sitio-header.pegado {
   background: rgba(0, 20, 28, 0.6);
   backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
   border-bottom-color: var(--linea);
   padding-block: var(--e2);
 }
@@ -95,6 +96,7 @@
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 6px;
   width: 44px;
   height: 44px;
@@ -376,6 +378,21 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
 @media (max-width: 860px) {
   .abrir-menu { display: flex; }
 
+  /* orden en celular: marca | idiomas | hamburguesa */
+  .sitio-header { gap: var(--e1); }
+  .marca { order: 1; margin-right: auto; }
+  .idiomas { order: 2; }
+  .abrir-menu { order: 3; }
+
+  /* Sin blur en el header de celular: en Safari/iOS un backdrop-filter
+     atrapa a los hijos con position:fixed dentro del header y el menú
+     deja de ocupar la pantalla completa. */
+  .sitio-header.pegado {
+    background: rgba(0, 20, 28, 0.94);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .sitio-nav {
     position: fixed;
     inset: 0;
@@ -385,8 +402,8 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
     justify-content: center;
     gap: var(--e3);
     margin: 0;
-    background: rgba(0, 20, 28, 0.96);
-    backdrop-filter: blur(24px);
+    padding: var(--e5) var(--margen) var(--e4);
+    background: #001A24;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-12px);
@@ -415,5 +432,12 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
   .hero { min-height: 92svh; }
   .sitio-pie { flex-direction: column; }
   .marca .glifo { font-size: 2.4rem; }
-  .idiomas button { padding: 0.45rem 0.8rem; font-size: 0.76rem; }
+  .marca .nombre { font-size: 0.7rem; letter-spacing: 0.34em; text-indent: 0.34em; }
+  .idiomas { gap: 0.25rem; }
+  .idiomas button { padding: 0.42rem 0.7rem; font-size: 0.74rem; gap: 0.3rem; }
+}
+
+@media (max-width: 420px) {
+  .idiomas button span[aria-hidden] { display: none; }
+  .sitio-nav a { font-size: 1.65rem; }
 }
