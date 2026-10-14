@@ -88,7 +88,7 @@
                   + `A resolver: ${datos.problema}`;
 
     responder(resumen, 1000, () => {
-      responder(`${datos.nombre}, con esto ya puedo decirte algo útil. Pica el botón y te llega el mensaje ya escrito — solo le das enviar.`, 850, () => {
+      responder(`${datos.nombre}, con esto ya puedo decirte algo útil. Pica el botón: se abre WhatsApp con tu mensaje ya escrito y solo le das enviar.`, 850, () => {
         ponerBoton();
         caja.classList.add('terminado');
         terminado = true;
