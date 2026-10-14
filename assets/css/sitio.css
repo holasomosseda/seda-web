@@ -19,37 +19,48 @@
   background: transparent;
   transition: background var(--medio) var(--curva),
               backdrop-filter var(--medio) var(--curva),
-              border-color var(--medio) var(--curva);
+              border-color var(--medio) var(--curva),
+              padding var(--medio) var(--curva);
   border-bottom: 1px solid transparent;
 }
 
-/* al hacer scroll se vuelve sólido: lo activa el JS */
 .sitio-header.pegado {
-  background: rgba(0, 26, 36, 0.78);
-  backdrop-filter: blur(16px);
+  background: rgba(0, 26, 36, 0.72);
+  backdrop-filter: blur(18px) saturate(1.2);
   border-bottom-color: var(--linea);
+  padding-block: 0.7rem;
 }
 
+/* --- CAMBIO: la S arriba, SEDA debajo --- */
 .marca {
   display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
   flex-shrink: 0;
+  gap: 0.25rem;
 }
 
 .marca .glifo {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.9rem;
-  line-height: 1;
+  font-size: 2.1rem;
+  line-height: 0.85;
+  transition: font-size var(--medio) var(--curva);
 }
 
 .marca .nombre {
-  font-size: 0.82rem;
-  letter-spacing: 0.3em;
+  font-size: 0.62rem;
+  letter-spacing: 0.42em;
   font-weight: 400;
+  text-indent: 0.42em;   /* compensa el espacio sobrante de la última letra */
+  color: var(--crema-tenue);
+  transition: font-size var(--medio) var(--curva);
 }
 
-/* --- navegación con línea que crece --- */
+.sitio-header.pegado .marca .glifo { font-size: 1.6rem; }
+.sitio-header.pegado .marca .nombre { font-size: 0.55rem; }
+
+/* --- navegación --- */
 
 .sitio-nav {
   display: flex;
@@ -83,7 +94,7 @@
 .sitio-nav a:hover::after,
 .sitio-nav a[aria-current="page"]::after { transform: scaleX(1); }
 
-/* --- selector de idioma --- */
+/* --- idiomas --- */
 
 .idiomas { display: flex; gap: 0.3rem; flex-shrink: 0; }
 
@@ -114,15 +125,18 @@
 }
 
 /* ===========================================================
-   BOTONES — el fondo se llena desde abajo
+   BOTONES
+   CAMBIO: align-self evita que se estiren a todo el ancho
    =========================================================== */
 
 .boton {
   position: relative;
   display: inline-flex;
+  align-self: flex-start;      /* <- el arreglo de la barra gigante */
+  width: fit-content;
   align-items: center;
   gap: 0.7rem;
-  padding: 1.05rem 2.2rem;
+  padding: 1.05rem 2.4rem;
   border: 1px solid var(--crema);
   border-radius: 999px;
   font-family: var(--fuente-dato);
@@ -133,7 +147,9 @@
   overflow: hidden;
   isolation: isolate;
   cursor: pointer;
-  transition: color var(--medio) var(--curva);
+  transition: color var(--medio) var(--curva),
+              transform var(--rapido) var(--curva),
+              border-color var(--medio) var(--curva);
 }
 
 .boton::before {
@@ -146,16 +162,16 @@
   transition: transform var(--medio) var(--curva);
 }
 
-.boton:hover { color: var(--tinta); }
+.boton:hover { color: var(--tinta); transform: translateY(-2px); }
 .boton:hover::before { transform: translateY(0); }
+.boton:active { transform: translateY(0); }
 
-/* variante sólida, para el llamado principal */
-.boton.lleno {
-  background: var(--crema);
-  color: var(--tinta);
-}
+.boton.lleno { background: var(--crema); color: var(--tinta); border-color: var(--crema); }
 .boton.lleno::before { background: var(--turquesa); }
-.boton.lleno:hover { color: var(--tinta); }
+.boton.lleno:hover { color: var(--tinta); border-color: var(--turquesa); }
+
+/* centrado dentro de la sección de cierre */
+.cierre .boton { align-self: center; }
 
 /* ===========================================================
    HERO
@@ -166,15 +182,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   padding-block: var(--e6) var(--e5);
 }
 
 .hero .dato { margin-bottom: var(--e3); }
-
-.hero h1 {
-  max-width: 17ch;
-  margin-bottom: var(--e3);
-}
+.hero h1 { max-width: 17ch; margin-bottom: var(--e3); }
 
 .hero .bajada {
   font-family: var(--fuente-dato);
@@ -191,7 +204,13 @@
    SECCIONES
    =========================================================== */
 
-.seccion-alterna { background: var(--tinta-honda); }
+.seccion-alterna {
+  background: linear-gradient(180deg,
+    rgba(0, 26, 36, 0) 0%,
+    rgba(0, 26, 36, 0.85) 18%,
+    rgba(0, 26, 36, 0.85) 82%,
+    rgba(0, 26, 36, 0) 100%);
+}
 
 .encabezado-seccion {
   margin-bottom: var(--e4);
@@ -202,29 +221,53 @@
 .texto-largo p + p { margin-top: var(--e2); }
 
 /* ===========================================================
-   TARJETAS DE SERVICIO
+   TARJETAS — CAMBIO: cuerpo, textura y resplandor del cursor
    =========================================================== */
 
 .rejilla {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 1px;
-  background: var(--linea);
-  border: 1px solid var(--linea);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--e2);
 }
 
 .tarjeta {
   position: relative;
-  background: var(--tinta);
+  isolation: isolate;
+  overflow: hidden;
   padding: var(--e3);
   display: flex;
   flex-direction: column;
   gap: var(--e2);
-  transition: background var(--medio) var(--curva);
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  background:
+    linear-gradient(160deg,
+      rgba(238, 229, 209, 0.055) 0%,
+      rgba(238, 229, 209, 0.015) 45%,
+      rgba(0, 26, 36, 0.35) 100%);
+  backdrop-filter: blur(6px);
+  transition: border-color var(--medio) var(--curva),
+              transform var(--medio) var(--curva);
 }
 
-.seccion-alterna .tarjeta { background: var(--tinta-honda); }
+/* resplandor que sigue al cursor dentro de la tarjeta */
+.tarjeta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--medio) var(--curva);
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(38, 255, 206, 0.10),
+    transparent 62%);
+}
 
+.tarjeta:hover { border-color: rgba(238, 229, 209, 0.3); transform: translateY(-3px); }
+.tarjeta:hover::after { opacity: 1; }
+
+/* línea superior */
 .tarjeta::before {
   content: '';
   position: absolute;
@@ -246,8 +289,10 @@
   font-size: 0.78rem;
   line-height: 1.9;
   color: var(--crema-tenue);
-  padding-left: var(--e2);
-  border-left: 1px solid var(--linea);
+  padding: var(--e2);
+  border-left: 1px solid rgba(38, 255, 206, 0.35);
+  background: rgba(0, 26, 36, 0.3);
+  border-radius: 0 3px 3px 0;
 }
 
 .tarjeta .enlace {
@@ -271,9 +316,9 @@
    CIERRE
    =========================================================== */
 
-.cierre { text-align: center; }
-.cierre h2 { max-width: 20ch; margin-inline: auto; margin-bottom: var(--e2); }
-.cierre p { margin-inline: auto; margin-bottom: var(--e3); }
+.cierre { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.cierre h2 { max-width: 20ch; margin-bottom: var(--e2); }
+.cierre p { margin-bottom: var(--e3); }
 
 /* ===========================================================
    PIE
