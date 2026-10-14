@@ -30,7 +30,7 @@ const TEXTOS = {
 
     "serv.medida.titulo": "Sistemas a la medida",
     "serv.medida.desc": "Software propio para un problema que ninguna herramienta del mercado resuelve. Corre en servidores propios y no depende de la plataforma de nadie.",
-    "serv.medida.ejemplo": "Un sistema que avisa cuando alguien llegó a casa. Otro que manda recordatorios de pagos solo. Otro que entrega análisis deportivo diario a suscriptores en Canadá.",
+    "serv.medida.ejemplo": "Un bot que avisa cuando alguien llegó bien a casa. Otro que acompaña la restauración de motocicletas clásicas, pieza por pieza. Otro que entrega análisis deportivo diario a suscriptores en Canadá.",
 
     "serv.sitios.titulo": "Sitios y tiendas",
     "serv.sitios.desc": "Sitios web y tiendas en línea hechos a la medida del negocio. Sin plantillas.",
@@ -71,7 +71,7 @@ const TEXTOS = {
 
     "serv.medida.titulo": "Custom-built systems",
     "serv.medida.desc": "Software built from scratch for a problem no off-the-shelf tool solves. It runs on our own servers and doesn't depend on anyone else's platform.",
-    "serv.medida.ejemplo": "A system that confirms someone got home safely. Another that sends payment reminders on its own. Another that delivers daily sports analysis to subscribers in Canada.",
+    "serv.medida.ejemplo": "A bot that confirms someone got home safely. Another that tracks a classic motorcycle restoration, part by part. Another that delivers daily sports analysis to subscribers in Canada.",
 
     "serv.sitios.titulo": "Websites & stores",
     "serv.sitios.desc": "Websites and online stores built around the business. No templates.",
