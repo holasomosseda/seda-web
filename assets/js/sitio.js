@@ -39,3 +39,27 @@ document.querySelectorAll('.tarjeta').forEach((tarjeta) => {
     tarjeta.style.setProperty('--my', `${e.clientY - caja.top}px`);
   });
 });
+
+/* --- menú de hamburguesa en celular --- */
+const btnMenu = document.getElementById('abrir-menu');
+const navSitio = document.querySelector('.sitio-nav');
+
+if (btnMenu && navSitio) {
+  const cerrar = () => {
+    document.body.classList.remove('menu-abierto');
+    btnMenu.setAttribute('aria-expanded', 'false');
+    btnMenu.setAttribute('aria-label', 'Abrir menú');
+  };
+
+  btnMenu.addEventListener('click', () => {
+    const abierto = document.body.classList.toggle('menu-abierto');
+    btnMenu.setAttribute('aria-expanded', String(abierto));
+    btnMenu.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  navSitio.querySelectorAll('a').forEach((a) => a.addEventListener('click', cerrar));
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') cerrar();
+  });
+}
