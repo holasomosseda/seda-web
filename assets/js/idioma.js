@@ -230,15 +230,18 @@ const TEXTOS = {
    =========================================================== */
 
 function idiomaInicial() {
+  // 1. si la URL trae ?lang=en, manda eso
   const url = new URLSearchParams(location.search).get("lang");
   if (url === "es" || url === "en") return url;
 
+  // 2. si el visitante ya eligió antes, se respeta
   try {
     const guardado = localStorage.getItem("seda_idioma");
     if (guardado === "es" || guardado === "en") return guardado;
   } catch (e) {}
 
-  return navigator.language.startsWith("en") ? "en" : "es";
+  // 3. por defecto SIEMPRE español: el negocio es mexicano
+  return "es";
 }
 
 function aplicarIdioma(lang) {
