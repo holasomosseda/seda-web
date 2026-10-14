@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Automatización — SEDA</title>
+  <meta name="description" content="Bots de atención 24/7 y sistemas a la medida. Prueba aquí mismo un asesor de tallas funcionando.">
+
+  <link rel="canonical" href="https://www.somosseda.com/automatizacion.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hubot+Sans:wght@200;400&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/sitio.css">
+  <link rel="stylesheet" href="/assets/css/atmosfera.css">
+  <link rel="stylesheet" href="/assets/css/demo.css">
+</head>
+
+<body>
+
+  <header class="sitio-header" id="encabezado">
+    <a href="/" class="marca">
+      <span class="glifo">S</span>
+      <span class="nombre">SEDA</span>
+    </a>
+
+    <nav class="sitio-nav">
+      <a href="/" data-t="nav.inicio">Inicio</a>
+      <a href="/automatizacion.html" aria-current="page" data-t="nav.automatizacion">Automatización</a>
+      <a href="/sitios.html" data-t="nav.sitios">Sitios y tiendas</a>
+      <a href="/contacto.html" data-t="nav.contacto">Contacto</a>
+    </nav>
+
+    <div class="idiomas">
+      <button type="button" data-lang-btn="es" aria-pressed="true" title="Español">
+        <span aria-hidden="true">🇲🇽</span> ES
+      </button>
+      <button type="button" data-lang-btn="en" aria-pressed="false" title="English">
+        <span aria-hidden="true">🇺🇸</span> EN
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero limite">
+      <p class="dato" data-t="auto.marca">Automatización</p>
+      <h1 data-t="auto.titulo">Sistemas que trabajan cuando tú no estás</h1>
+      <p class="bajada" data-t="auto.bajada">Un negocio pierde clientes en los huecos: de noche, en fin de semana, cuando llegan veinte mensajes al mismo tiempo. Eso es lo que cerramos.</p>
+    </section>
+
+    <!-- EL DEMO -->
+    <section class="seccion-alterna">
+      <div class="limite demo-marco">
+
+        <div class="demo-texto aparece">
+          <p class="dato" data-t="demo.etiqueta">Pruébalo ahora</p>
+          <h2 data-t="demo.titulo">Un asesor de tallas, funcionando</h2>
+          <p data-t="demo.p1">Esto no es un video ni una captura. Es un bot real corriendo en esta página. Escribe tus medidas y te dirá tu talla, igual que lo haría en el Instagram de una tienda.</p>
+          <p data-t="demo.p2">Construimos uno así para una marca de trajes de baño. Sus clientas empezaron a decir que todas las tiendas en línea deberían tener uno.</p>
+        </div>
+
+        <div>
+          <div class="chat" id="demo-tallas">
+            <div class="chat-barra">
+              <div class="chat-avatar">MS</div>
+              <div class="chat-quien">
+                <strong>Marea Swim</strong>
+                <span data-t="demo.estado">EN LÍNEA</span>
+              </div>
+            </div>
+
+            <div class="chat-hilo"></div>
+
+            <form class="chat-forma" autocomplete="off">
+              <input class="chat-campo" type="text" inputmode="decimal"
+                     placeholder="Escribe tu medida…" aria-label="Tu medida en centímetros">
+              <button class="chat-enviar" type="submit" aria-label="Enviar">↑</button>
+            </form>
+          </div>
+
+          <button class="chat-reiniciar" type="button" data-t="demo.reiniciar">Empezar de nuevo</button>
+          <p class="nota-demo" data-t="demo.nota">Marca ficticia y tabla de tallas genérica, solo para esta demostración.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LOS DOS TIPOS -->
+    <section>
+      <div class="limite">
+        <div class="encabezado-seccion aparece">
+          <h2 data-t="auto.tipos.titulo">Dos formas de automatizar</h2>
+        </div>
+
+        <div class="rejilla aparece">
+
+          <article class="tarjeta">
+            <h3 data-t="auto.canal.titulo">Sobre tus canales</h3>
+            <p data-t="auto.canal.desc">El bot vive donde tus clientes ya te escriben: Instagram, WhatsApp, Facebook. Responde preguntas frecuentes, atiende comentarios, recoge datos y pasa la conversación a una persona cuando hace falta.</p>
+            <p class="ejemplo" data-t="auto.canal.ejemplo">Se arma en días, no en meses. Es el punto de entrada más rápido para un negocio que está perdiendo mensajes.</p>
+          </article>
+
+          <article class="tarjeta">
+            <h3 data-t="auto.medida.titulo">Sistemas a la medida</h3>
+            <p data-t="auto.medida.desc">Cuando ninguna herramienta del mercado resuelve el problema, construimos el sistema. La lógica y los datos viven en nuestra propia infraestructura; el canal por donde llega al usuario lo elegimos según el caso.</p>
+            <p class="ejemplo" data-t="auto.medida.ejemplo">Aquí entra lo que no cabe en una plataforma: reglas propias, cálculos, avisos automáticos, conexión con otros servicios.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- QUÉ HEMOS CONSTRUIDO -->
+    <section class="seccion-alterna">
+      <div class="limite">
+        <div class="encabezado-seccion aparece">
+          <h2 data-t="auto.hechos.titulo">Qué hemos construido</h2>
+        </div>
+
+        <div class="rejilla aparece">
+
+          <article class="tarjeta">
+            <h3 data-t="auto.llegue.titulo">Llegué Bien</h3>
+            <p data-t="auto.llegue.desc">Avisa a tu gente que llegaste bien a casa, sin que tengas que acordarte de escribir. Detecta la llegada y manda el aviso solo.</p>
+            <p class="ejemplo" data-t="auto.llegue.ejemplo">Nació de un problema real: nadie avisa cuando llega de noche, y el que espera no duerme.</p>
+          </article>
+
+          <article class="tarjeta">
+            <h3 data-t="auto.vintage.titulo">VintageTune</h3>
+            <p data-t="auto.vintage.desc">Hecho por encargo para un restaurador de motocicletas clásicas. Lleva el avance de cada moto, pieza por pieza, y responde al dueño cuando pregunta.</p>
+            <p class="ejemplo" data-t="auto.vintage.ejemplo">Un sistema para una sola persona y su manera de trabajar. Eso es a la medida.</p>
+          </article>
+
+          <article class="tarjeta">
+            <h3 data-t="auto.puck.titulo">The Puck Report</h3>
+            <p data-t="auto.puck.desc">Producto propio para aficionados al hockey en Canadá. Entrega cada día el panorama de los partidos: forma reciente, lesiones, porteros probables, y qué dijeron las apuestas frente a lo que realmente pasó.</p>
+            <p class="ejemplo" data-t="auto.puck.ejemplo">Cruza varias fuentes de datos y guarda el histórico. Nadie lo arma a mano todos los días.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="limite cierre aparece">
+        <h2 data-t="auto.cierre.titulo">¿Qué es lo que repites todos los días?</h2>
+        <p data-t="auto.cierre.p">Cuéntamelo y te digo si vale la pena automatizarlo. Si no vale, también te lo digo.</p>
+        <a href="https://wa.me/524461113272" class="boton" data-t="cierre.cta">Escríbeme por WhatsApp</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="sitio-pie limite">
+    <p class="dato" data-t="pie.marca">SEDA — Sistemas y Educación Digital Automatizada</p>
+    <p class="dato" data-t="pie.lugar">Querétaro, México</p>
+  </footer>
+
+  <script src="/assets/js/atmosfera.js"></script>
+  <script src="/assets/js/idioma.js"></script>
+  <script src="/assets/js/sitio.js"></script>
+  <script src="/assets/js/demo-tallas.js"></script>
+</body>
+</html>
