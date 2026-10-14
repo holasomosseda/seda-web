@@ -9,7 +9,10 @@
   pointer-events: none;
 }
 
-.sitio-header,
+/* El contenido va por encima del lienzo.
+   OJO: el header NO entra aquí. Lleva su propio position/z-index en
+   sitio.css (fixed, z-index 100). Si se mete en esta regla, deja de
+   ser fijo y el menú de celular queda por debajo del contenido. */
 main,
 .sitio-pie { position: relative; z-index: 1; }
 
