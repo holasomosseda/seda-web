@@ -213,7 +213,7 @@
 .texto-largo p + p { margin-top: var(--e2); }
 
 /* ===========================================================
-   TARJETAS — nodos de una red
+   TARJETAS
    =========================================================== */
 
 .rejilla {
@@ -221,20 +221,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--e3);
-}
-
-/* la línea que conecta los nodos entre sí */
-.rejilla::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 8%; right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent,
-    var(--oro-suave) 20%,
-    var(--oro-suave) 80%,
-    transparent);
-  opacity: 0.4;
 }
 
 .tarjeta {
@@ -256,27 +242,6 @@
   transition: border-color var(--medio) var(--curva),
               transform var(--medio) var(--curva),
               box-shadow var(--medio) var(--curva);
-}
-
-/* el nodo: punto luminoso en el borde superior */
-.tarjeta::before {
-  content: '';
-  position: absolute;
-  top: -4px; left: 50%;
-  width: 7px; height: 7px;
-  margin-left: -3.5px;
-  border-radius: 50%;
-  background: var(--oro);
-  box-shadow: 0 0 0 4px rgba(212, 180, 131, 0.14),
-              0 0 18px 2px rgba(212, 180, 131, 0.5);
-  transition: box-shadow var(--medio) var(--curva),
-              transform var(--medio) var(--curva);
-}
-
-.tarjeta:hover::before {
-  transform: scale(1.5);
-  box-shadow: 0 0 0 7px rgba(212, 180, 131, 0.2),
-              0 0 28px 5px rgba(212, 180, 131, 0.75);
 }
 
 /* resplandor que sigue al cursor */
@@ -302,7 +267,6 @@
 
 .tarjeta:hover::after { opacity: 1; }
 
-.tarjeta h3 { margin-top: var(--e1); }
 .tarjeta p { font-size: 1.02rem; }
 
 .tarjeta .ejemplo {
@@ -379,6 +343,5 @@
   .sitio-nav { display: none; }
   .hero { min-height: 92svh; }
   .sitio-pie { flex-direction: column; }
-  .rejilla::before { display: none; }
   .marca .glifo { font-size: 2.4rem; }
 }
