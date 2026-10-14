@@ -37,6 +37,7 @@
   line-height: 1;
   flex-shrink: 0;
   gap: 0.3rem;
+  z-index: 110;
 }
 
 .marca .glifo {
@@ -88,9 +89,43 @@
 .sitio-nav a:hover::after,
 .sitio-nav a[aria-current="page"]::after { transform: scaleX(1); }
 
+/* --- botón de menú (solo celular) --- */
+
+.abrir-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 110;
+}
+
+.abrir-menu span {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background: var(--crema);
+  transition: transform var(--medio) var(--curva),
+              opacity var(--rapido) var(--curva);
+}
+
+body.menu-abierto .abrir-menu span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+body.menu-abierto .abrir-menu span:nth-child(2) { opacity: 0; }
+body.menu-abierto .abrir-menu span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
 /* --- idiomas --- */
 
-.idiomas { display: flex; gap: 0.3rem; flex-shrink: 0; }
+.idiomas { display: flex; gap: 0.3rem; flex-shrink: 0; z-index: 110; }
 
 .idiomas button {
   display: inline-flex;
@@ -244,7 +279,6 @@
               box-shadow var(--medio) var(--curva);
 }
 
-/* resplandor que sigue al cursor */
 .tarjeta::after {
   content: '';
   position: absolute;
@@ -340,8 +374,46 @@
    =========================================================== */
 
 @media (max-width: 860px) {
-  .sitio-nav { display: none; }
+  .abrir-menu { display: flex; }
+
+  .sitio-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 105;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--e3);
+    margin: 0;
+    background: rgba(0, 20, 28, 0.96);
+    backdrop-filter: blur(24px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity var(--medio) var(--curva),
+                transform var(--medio) var(--curva),
+                visibility var(--medio);
+  }
+
+  body.menu-abierto .sitio-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .sitio-nav a {
+    font-size: 1.9rem;
+    color: var(--crema);
+    padding-block: 0.3rem;
+  }
+
+  .sitio-nav a::after { display: none; }
+  .sitio-nav a[aria-current="page"] { color: var(--oro); }
+
+  body.menu-abierto { overflow: hidden; }
+
   .hero { min-height: 92svh; }
   .sitio-pie { flex-direction: column; }
   .marca .glifo { font-size: 2.4rem; }
+  .idiomas button { padding: 0.45rem 0.8rem; font-size: 0.76rem; }
 }
