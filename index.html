@@ -18,6 +18,28 @@
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/sitio.css">
   <link rel="stylesheet" href="/assets/css/atmosfera.css">
+
+  <link rel="preload" as="image" href="/assets/img/nudo.jpg">
+
+  <script>
+    /* Tapa el sitio ANTES del primer pintado y muestra la red por CSS de
+       inmediato. Sin esto hay dos segundos de pantalla negra mientras baja
+       Three.js, y el intro entra tarde y encima de la página.
+       El lienzo de WebGL releva a esta imagen cuando está listo.
+       Si algo falla y intro.js nunca destapa, esto se destapa solo. */
+    (function () {
+      try {
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (sessionStorage.getItem('seda_intro') === 'visto') return;
+        window.__sedaT0 = performance.now();
+        var h = document.documentElement;
+        h.className += ' con-intro';
+        setTimeout(function () {
+          h.className = h.className.replace(/\s*con-intro\b/, '');
+        }, 14000);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>

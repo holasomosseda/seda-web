@@ -17,16 +17,44 @@ main,
 .sitio-pie { position: relative; z-index: 1; }
 
 /* --- intro: solo existe en el inicio y solo unos segundos --- */
+
+/* La tapa la pone un script en el <head> ANTES del primer pintado. Si no,
+   el sitio alcanza a verse y el intro entra tarde, encima de él. */
+html.con-intro body { visibility: hidden; }
+
+/* La red se ve por CSS desde el primer pintado, mientras baja Three.js.
+   El encuadre tiene que ser EL MISMO que el de WebGL o el relevo se nota:
+   en horizontal se ajusta al ancho, en vertical se llena el alto. */
+html.con-intro::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  /* negro puro, igual que el lienzo y que el fondo de la imagen */
+  background: #000 url("/assets/img/nudo.jpg") center / 100% auto no-repeat;
+}
+
+@media (orientation: portrait) {
+  html.con-intro::before { background-size: auto 100%; }
+}
+
+/* El lienzo cuelga de <html>, no de <body>: el body está oculto.
+   Entra con un fundido corto encima de la imagen de CSS. */
 #seda-intro {
   position: fixed;
   inset: 0;
-  z-index: 200;          /* por encima del header, que vive en 100 */
+  z-index: 9999;
   pointer-events: none;
-  opacity: 1;
-  transition: opacity var(--medio) var(--curva);
+  opacity: 0;
+  transition: opacity 0.25s var(--curva);
 }
 
-#seda-intro.saliendo { opacity: 0; }
+#seda-intro.listo { opacity: 1; }
+
+#seda-intro.saliendo {
+  opacity: 0;
+  transition-duration: var(--medio);
+}
 
 /* mientras el intro tapa la pantalla no tiene sentido poder desplazarse */
 body.intro-activo { overflow: hidden; }
