@@ -19,8 +19,13 @@ main,
 /* --- intro: solo existe en el inicio y solo unos segundos --- */
 
 /* La tapa la pone un script en el <head> ANTES del primer pintado. Si no,
-   el sitio alcanza a verse y el intro entra tarde, encima de él. */
-html.con-intro body { visibility: hidden; }
+   el sitio alcanza a verse y el intro entra tarde, encima de él.
+
+   OJO: el body NO se oculta. Antes sí, y por eso la entrada se sentía
+   un golpe — la página se pintaba de cero en el mismo instante en que
+   el video se iba. Ahora el sitio se dibuja y la atmósfera ya está
+   corriendo DETRÁS de la tapa opaca; cuando el video se funde, lo que
+   aparece ya estaba vivo. La tapa sola basta para que no se vea. */
 
 /* Tapa lisa del color del sitio. El primer cuadro del video es
    prácticamente este mismo color, así que el relevo no se ve:
@@ -50,10 +55,40 @@ html.con-intro::before {
 
 #seda-intro.listo { opacity: 1; }
 
-#seda-intro.saliendo {
+/* El cruce NO usa --curva. Esa curva es muy frontal: la hice para la
+   interfaz, y aquí tiraba la opacidad casi a cero en el primer tercio
+   — justo el golpe que se sentía al entrar. Un cruce quiere una curva
+   simétrica, que reparta el desvanecido parejo. */
+#seda-intro.saliendo,
+#seda-intro-textura.saliendo {
   opacity: 0;
-  transition-duration: var(--medio);
+  transition: opacity var(--lento) cubic-bezier(0.45, 0, 0.55, 1);
 }
+
+/* El video es tinta limpio; el sitio lleva grano y viñeta. Sin estas
+   dos capas encima del video, el intro se siente de otra materia que
+   la página y el cambio se nota aunque el color sea el mismo. */
+#seda-intro-textura {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+    transparent 42%,
+    rgba(0, 18, 26, 0.5) 100%);
+  transition: opacity var(--lento) var(--curva);
+}
+
+#seda-intro-textura::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23r)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
 
 /* mientras el intro tapa la pantalla no tiene sentido poder desplazarse */
 body.intro-activo { overflow: hidden; }

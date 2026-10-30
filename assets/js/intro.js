@@ -50,8 +50,11 @@
     alto:  [['/assets/video/intro-916.webm', 'video/webm'],
             ['/assets/video/intro-916.mp4',  'video/mp4']]
   };
-  const T_FUNDIDO   = 450;    // cruce con el sitio (--medio del CSS)
-  const T_ANTES     = 400;    // cuánto antes del final arranca el fundido
+  /* El cruce es largo a propósito (--lento). Con 450ms se sentía un
+     corte; el video termina casi vacío, así que el fundido puede
+     montarse sobre el final de la desintegración sin taparla. */
+  const T_FUNDIDO   = 900;
+  const T_ANTES     = 900;    // cuánto antes del final arranca el fundido
   const T_VIGIA     = 3000;   // si en este tiempo el video no tiene datos, se abandona
   const T_RESCATE   = 7000;   // último recurso: el intro se quita pase lo que pase
 
@@ -63,6 +66,12 @@
 
   const video = document.createElement('video');
 
+  // grano y viñeta encima del video, para que tenga la misma textura
+  // que el sitio y el relevo no se sienta un cambio de material
+  const textura = document.createElement('div');
+  textura.id = 'seda-intro-textura';
+  textura.setAttribute('aria-hidden', 'true');
+
   function terminar() {
     if (terminado) return;
     terminado = true;
@@ -73,11 +82,13 @@
     // así no hay salto, hay cruce
     destapar();
     video.classList.add('saliendo');
+    textura.classList.add('saliendo');
     document.body.classList.remove('intro-activo');
 
     setTimeout(function () {
       try { video.pause(); } catch (e) {}
       if (video.parentNode) video.parentNode.removeChild(video);
+      if (textura.parentNode) textura.parentNode.removeChild(textura);
     }, T_FUNDIDO + 80);
   }
 
@@ -120,8 +131,9 @@
   video.loop = false;
   video.controls = false;
 
-  // cuelga de <html>, no de <body>: el body está oculto hasta el final
+  // cuelgan de <html>, por encima de la tapa que puso el <head>
   document.documentElement.appendChild(video);
+  document.documentElement.appendChild(textura);
   document.body.classList.add('intro-activo');
 
   /* --- arranque --- */

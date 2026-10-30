@@ -286,7 +286,7 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
 
 .contacto .contacto-arriba {
   display: grid;
-  grid-template-columns: 1fr minmax(0, 400px);
+  grid-template-columns: 1fr minmax(0, 470px);
   gap: var(--e3);
   align-items: center;
   /* el header es fijo y mide ~126px: sin este margen el contenido se
@@ -310,10 +310,11 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
 
 .contacto .contacto-bot .dato { text-align: center; }
 
-/* El hilo es más corto que en el demo de Automatización: allá el bot
-   es el protagonista de su sección, aquí tiene que caber junto con
-   todo lo demás. */
-.contacto .chat-hilo { height: 210px; }
+/* El bot es el protagonista de esta página, así que va más grande que
+   en el demo de Automatización — no al revés. El espacio sale de las
+   tarjetas de abajo, que son un dato de contacto y no una sección. */
+.contacto .chat { max-width: 470px; }
+.contacto .chat-hilo { height: 360px; }
 
 .contacto .contacto-abajo { padding-block: var(--e2) var(--e2); }
 
@@ -327,19 +328,41 @@ body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
   border-bottom: 1px solid var(--linea);
 }
 
-.contacto .contacto-abajo .tarjeta { padding: var(--e2); }
+/* Aquí los datos de contacto NO son tarjetas: son tres columnas de
+   texto con una línea al lado. Como cajas se comían el alto que le
+   hace falta al bot, que es el protagonista de la página. */
+.contacto .contacto-abajo .tarjeta {
+  padding: 0 0 0 var(--e2);
+  gap: 0.3rem;
+  border: 0;
+  border-left: 1px solid var(--linea);
+  border-radius: 0;
+  background: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.contacto .contacto-abajo .tarjeta::after { display: none; }
+.contacto .contacto-abajo .tarjeta:hover  { transform: none; }
+
 .contacto .contacto-abajo .tarjeta h3 { font-size: var(--t-cuerpo); }
-.contacto .contacto-abajo .tarjeta p  { font-size: var(--t-dato); }
+.contacto .contacto-abajo .tarjeta p  {
+  font-size: var(--t-dato);
+  line-height: 1.5;
+}
 
 @media (max-width: 860px) {
   /* en celular se apila y el bot va primero, que es el punto */
   .contacto .contacto-arriba {
     grid-template-columns: 1fr;
     gap: var(--e3);
-    padding-block: var(--e3) var(--e2);
+    /* el bot queda hasta arriba y el header es fijo: sin este espacio
+       se le mete por debajo y la etiqueta no se alcanza a leer */
+    padding-block: calc(var(--e5) + var(--e2)) var(--e2);
   }
   .contacto .contacto-dicho { order: 2; }
   .contacto .contacto-bot   { order: 1; }
+  .contacto .chat-hilo { height: 300px; }
 }
 
 .encabezado-seccion {
