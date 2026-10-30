@@ -71,6 +71,8 @@
   const CONF = cual ? NEBULOSAS_IMG[cual] : null;
 
   let neb = null;          // la imagen, ya cargada
+  let nebFallo = false;    // la imagen NO llegó: ahí sí entra el respaldo
+  let nebAlfa = 0;         // sube de 0 a 1 para que entre con fundido
   const MAPA = 180;        // resolución del mapa de densidad
   let mapa = null;         // Uint8ClampedArray del mapa
 
@@ -116,6 +118,7 @@
       }
       sembrar();   // re-sembrar las estrellas, ahora sabiendo dónde hay gas
     };
+    img.onerror = function () { nebFallo = true; };
     img.src = CONF.src;
   }
 
@@ -234,7 +237,14 @@
   }
 
   // window.__atmDebug = true antes de cargar, para poder contarlos
-  if (window.__atmDebug) { window.__atmCometas = cometas; window.__atmEstrellas = () => estrellas; }
+  if (window.__atmDebug) {
+    window.__atmCometas = cometas;
+    window.__atmEstrellas = () => estrellas;
+    window.__atmNebulosa = () => ({
+      cargada: !!neb, fallo: nebFallo, alfa: +nebAlfa.toFixed(3),
+      respaldoVisible: !neb && (!CONF || nebFallo)
+    });
+  }
 
   setInterval(() => { if (Math.random() < 0.72) lanzarCometa(); }, 2600);
   setTimeout(lanzarCometa, 1200);
@@ -281,20 +291,27 @@
     despSuave += (desp - despSuave) * 0.055;
 
     ctx.clearRect(0, 0, an, al);
+    // la nebulosa se pinta normal; de las estrellas en adelante, suma de luz
+    ctx.globalCompositeOperation = 'source-over';
 
     /* 1. la nebulosa */
     if (neb) {
       // source-over, no 'lighter': la imagen ya trae el fondo del sitio.
       // Sumarla lo aclararía y el tinta dejaría de ser tinta.
       const e = encuadre();
+      // entra con fundido: aparecer de golpe se ve como un error de carga
+      nebAlfa += (1 - nebAlfa) * 0.07;
       // __nebOpacidad en consola para calibrar sin tocar el archivo
-      ctx.globalAlpha = typeof window.__nebOpacidad === 'number'
+      const op = typeof window.__nebOpacidad === 'number'
         ? window.__nebOpacidad : CONF.opacidad;
+      ctx.globalAlpha = op * nebAlfa;
       ctx.drawImage(neb, e.x, e.y, e.t, e.t);
       ctx.globalAlpha = 1;
-      ctx.globalCompositeOperation = 'lighter';
-    } else {
-      ctx.globalCompositeOperation = 'lighter';
+    } else if (!CONF || nebFallo) {
+      /* Las manchas de respaldo solo si esta página no tiene nebulosa
+         propia, o si la suya NO cargó. Dibujarlas mientras la imagen
+         viene en camino hacía que se vieran y luego se cambiaran de
+         golpe: eso era el parpadeo al abrir cada página. */
       for (const n of NEBULOSAS) {
         const nx = (n.x + Math.sin(t * 0.6 + n.vel * 4) * 0.045
                        + (suave.x - 0.5) * 0.07 * n.vel) * an;
@@ -312,6 +329,7 @@
     }
 
     /* 2. resplandor del cursor */
+    ctx.globalCompositeOperation = 'lighter';
     const gx = suave.x * an, gy = suave.y * al;
     const halo = ctx.createRadialGradient(gx, gy, 0, gx, gy, Math.max(an, al) * 0.4);
     halo.addColorStop(0, 'rgba(212,180,131,0.05)');
