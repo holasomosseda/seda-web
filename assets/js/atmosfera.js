@@ -43,6 +43,13 @@
       escala: 1.5,     // más grande que la pantalla, para que tenga de dónde moverse
       x: 0.68, y: 0.42,
       vel: 0.45        // qué tanto la arrastra el scroll (es la capa más lejana)
+    },
+    automatizacion: {
+      src: '/assets/img/nebulosa-automatizacion.jpg',
+      opacidad: 0.90,
+      escala: 1.5,
+      x: 0.70, y: 0.45,
+      vel: 0.45
     }
   };
 
