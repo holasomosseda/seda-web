@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/assets/css/demo.css">
 </head>
 
-<body>
+<body data-nebulosa="contacto">
 
   <header class="sitio-header" id="encabezado">
     <a href="/" class="marca">
@@ -49,26 +49,21 @@
     </div>
   </header>
 
-  <main>
+  <main class="contacto">
 
-    <section class="hero limite">
-      <p class="dato" data-t="cont.marca">Contacto</p>
-      <h1 data-t="cont.titulo">Cuéntame el problema</h1>
-      <p class="bajada" data-t="cont.bajada">No necesito que sepas qué solución quieres. Necesito saber qué te quita tiempo.</p>
-    </section>
+    <section class="contacto-arriba limite">
 
-    <section class="seccion-alterna">
-      <div class="limite demo-marco">
+      <div class="contacto-dicho">
+        <p class="dato" data-t="cont.marca">Contacto</p>
+        <h1 data-t="cont.titulo">Cuéntame el problema</h1>
+        <p class="bajada" data-t="cont.bajada">No necesito que sepas qué solución quieres. Necesito saber qué te quita tiempo.</p>
+        <p data-t="cont.chat.p1">Tres preguntas y te armo el mensaje listo para enviar.</p>
+        <p data-t="cont.chat.p2">Y sí: este bot es también una muestra.</p>
+      </div>
 
-        <div class="demo-texto aparece">
-          <p class="dato" data-t="cont.etiqueta">Treinta segundos</p>
-          <h2 data-t="cont.chat.titulo">Deja que el bot tome tu caso</h2>
-          <p data-t="cont.chat.p1">Tres preguntas y te armo el mensaje listo para enviar.</p>
-          <p data-t="cont.chat.p2">Y sí: este bot es también una muestra.</p>
-        </div>
-
-        <div>
-          <div class="chat" id="bot-contacto">
+      <div class="contacto-bot">
+        <p class="dato" data-t="cont.etiqueta">Treinta segundos</p>
+        <div class="chat" id="bot-contacto">
             <div class="chat-barra">
               <div class="chat-avatar chat-avatar-seda">S</div>
               <div class="chat-quien">
@@ -83,19 +78,15 @@
               <input class="chat-campo" type="text" placeholder="Escribe aquí…" aria-label="Tu respuesta">
               <button class="chat-enviar" type="submit" aria-label="Enviar">↑</button>
             </form>
-          </div>
         </div>
-
       </div>
+
     </section>
 
-    <section>
-      <div class="limite">
-        <div class="encabezado-seccion aparece">
-          <h2 data-t="cont.directo.titulo">O directo, sin rodeos</h2>
-        </div>
+    <section class="contacto-abajo limite">
+      <h2 data-t="cont.directo.titulo">O directo, sin rodeos</h2>
 
-        <div class="rejilla aparece">
+      <div class="rejilla">
 
           <article class="tarjeta">
             <h3 data-t="cont.wa.titulo">WhatsApp</h3>
@@ -114,7 +105,6 @@
             <p data-t="cont.donde.desc">Querétaro, México. Trabajamos en remoto con negocios de cualquier ciudad.</p>
           </article>
 
-        </div>
       </div>
     </section>
 

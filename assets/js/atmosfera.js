@@ -50,6 +50,20 @@
       escala: 1.5,
       x: 0.70, y: 0.45,
       vel: 0.45
+    },
+    sitios: {
+      src: '/assets/img/nebulosa-sitios.jpg',
+      opacidad: 0.90,
+      escala: 1.5,
+      x: 0.72, y: 0.44,
+      vel: 0.45
+    },
+    contacto: {
+      src: '/assets/img/nebulosa-contacto.jpg',
+      opacidad: 0.90,
+      escala: 1.55,
+      x: 0.74, y: 0.46,
+      vel: 0.45
     }
   };
 

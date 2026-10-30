@@ -23,6 +23,27 @@
   border-bottom: 1px solid transparent;
 }
 
+/* Velo de sombra detrás del header. Sin esto, cuando una zona brillante
+   de la nebulosa cae justo detrás del nav, los enlaces pierden contraste
+   — medido: "Inicio" se iba a 2.42:1 en Contacto, debajo del mínimo
+   accesible. Se derrama hacia abajo y se desvanece, así no se ve como
+   una barra. Va detrás del contenido del header, no encima. */
+.sitio-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -3.5rem 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(0, 19, 24, 0.88) 0%,
+    rgba(0, 19, 24, 0.55) 52%,
+    rgba(0, 19, 24, 0) 100%);
+  transition: opacity var(--medio) var(--curva);
+}
+
+/* ya pegado, el fondo sólido hace el trabajo y el velo sobra */
+.sitio-header.pegado::before { opacity: 0; }
+
 .sitio-header.pegado {
   background: rgba(0, 20, 28, 0.6);
   backdrop-filter: blur(20px) saturate(1.3);
@@ -253,6 +274,72 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
     rgba(0, 20, 28, 0.6) 18%,
     rgba(0, 20, 28, 0.6) 82%,
     rgba(0, 20, 28, 0) 100%);
+}
+
+/* ===========================================================
+   Contacto: todo en una pantalla
+
+   Antes eran tres scrolls — hero de pantalla completa, luego el
+   bot, luego los datos. Si lo que vendemos son Smart Webs, el bot
+   tiene que ser lo primero que se ve, no una recompensa por bajar.
+   =========================================================== */
+
+.contacto .contacto-arriba {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 400px);
+  gap: var(--e3);
+  align-items: center;
+  /* el header es fijo y mide ~126px: sin este margen el contenido se
+     le mete por debajo. Las otras páginas lo libran porque su hero
+     ocupa la pantalla completa y centra. */
+  padding-block: calc(var(--e5) + var(--e2)) var(--e2);
+}
+
+.contacto .contacto-arriba .dato   { margin-bottom: var(--e2); }
+
+/* Aquí el titular NO va en el tamaño de hero. En las otras páginas el
+   H1 es el protagonista; en esta lo es el bot, y un titular gigante
+   empujaba todo fuera de la pantalla él solo. */
+.contacto .contacto-arriba h1 {
+  font-size: var(--t-grande);
+  max-width: 14ch;
+  margin-bottom: var(--e2);
+}
+.contacto .contacto-arriba .bajada { max-width: 44ch; }
+.contacto .contacto-dicho p + p    { margin-top: var(--e2); }
+
+.contacto .contacto-bot .dato { text-align: center; }
+
+/* El hilo es más corto que en el demo de Automatización: allá el bot
+   es el protagonista de su sección, aquí tiene que caber junto con
+   todo lo demás. */
+.contacto .chat-hilo { height: 210px; }
+
+.contacto .contacto-abajo { padding-block: var(--e2) var(--e2); }
+
+/* el pie también se aprieta, solo en esta página */
+body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
+
+.contacto .contacto-abajo h2 {
+  font-size: var(--t-medio);
+  margin-bottom: var(--e2);
+  padding-bottom: var(--e2);
+  border-bottom: 1px solid var(--linea);
+}
+
+.contacto .contacto-abajo .tarjeta { padding: var(--e2); }
+.contacto .contacto-abajo .tarjeta h3 { font-size: var(--t-cuerpo); }
+.contacto .contacto-abajo .tarjeta p  { font-size: var(--t-dato); }
+
+@media (max-width: 860px) {
+  /* en celular se apila y el bot va primero, que es el punto */
+  .contacto .contacto-arriba {
+    grid-template-columns: 1fr;
+    gap: var(--e3);
+    padding-block: var(--e3) var(--e2);
+  }
+  .contacto .contacto-dicho { order: 2; }
+  .contacto .contacto-bot   { order: 1; }
 }
 
 .encabezado-seccion {
