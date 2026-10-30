@@ -22,31 +22,30 @@ main,
    el sitio alcanza a verse y el intro entra tarde, encima de él. */
 html.con-intro body { visibility: hidden; }
 
-/* La red se ve por CSS desde el primer pintado, mientras baja Three.js.
-   El encuadre tiene que ser EL MISMO que el de WebGL o el relevo se nota:
-   en horizontal se ajusta al ancho, en vertical se llena el alto. */
+/* Tapa lisa del color del sitio. El primer cuadro del video es
+   prácticamente este mismo color, así que el relevo no se ve:
+   mientras el video carga, la pantalla ya es lo que el video va a
+   mostrar en su primer cuadro. */
 html.con-intro::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9998;
-  /* negro puro, igual que el lienzo y que el fondo de la imagen */
-  background: #000 url("/assets/img/nudo.jpg") center / 100% auto no-repeat;
+  background: var(--tinta);
 }
 
-@media (orientation: portrait) {
-  html.con-intro::before { background-size: auto 100%; }
-}
-
-/* El lienzo cuelga de <html>, no de <body>: el body está oculto.
-   Entra con un fundido corto encima de la imagen de CSS. */
+/* El video cuelga de <html>, no de <body>: el body está oculto. */
 #seda-intro {
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* llena la pantalla sin deformarse */
+  background: var(--tinta);
   opacity: 0;
-  transition: opacity 0.25s var(--curva);
+  transition: opacity 0.2s var(--curva);
 }
 
 #seda-intro.listo { opacity: 1; }
