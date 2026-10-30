@@ -86,9 +86,20 @@
 
 .sitio-nav a[aria-current="page"] { color: var(--crema); }
 
-/* al pasar el puntero el enlace se enciende a un blanco más fuerte
-   que el crema del sitio. Sin resplandor: solo sube de luz. */
-.sitio-nav a:hover { color: var(--crema-vivo); }
+/* Al pasar el puntero el enlace se enciende a blanco. Aclarar la letra
+   sola casi no se nota: en reposo ya va a 0.92. Lo que da el salto es
+   la sombra en tinta, que oscurece la nebulosa justo detrás de la
+   letra y la separa del fondo. Es contraste, no resplandor. */
+.sitio-nav a:hover {
+  color: var(--crema-vivo);
+  text-shadow:
+    0 0 4px  rgba(0, 26, 36, 0.95),
+    0 0 14px rgba(0, 26, 36, 0.85),
+    0 0 28px rgba(0, 26, 36, 0.6);
+}
+
+/* y el subrayado engorda un pelo, para que el gesto tenga dos señales */
+.sitio-nav a:hover::after { height: 2px; }
 
 .sitio-nav a:hover::after,
 .sitio-nav a[aria-current="page"]::after { transform: scaleX(1); }
