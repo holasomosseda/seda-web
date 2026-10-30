@@ -100,10 +100,10 @@
 
   /* --- estrellas en cuatro profundidades --- */
   const CAPAS = [
-    { n: chico ? 110 : 260, r: [0.25, 0.7], alfa: [0.10, 0.28], prof: 0.12 },
-    { n: chico ? 60 : 140,  r: [0.5, 1.1],  alfa: [0.16, 0.40], prof: 0.34 },
-    { n: chico ? 28 : 64,   r: [0.9, 1.8],  alfa: [0.26, 0.58], prof: 0.62 },
-    { n: chico ? 10 : 24,   r: [1.5, 3.0],  alfa: [0.38, 0.78], prof: 0.95 }
+    { n: chico ? 110 : 260, r: [0.25, 0.7], alfa: [0.16, 0.38], prof: 0.12 },
+    { n: chico ? 60 : 140,  r: [0.5, 1.1],  alfa: [0.24, 0.52], prof: 0.34 },
+    { n: chico ? 28 : 64,   r: [0.9, 1.8],  alfa: [0.36, 0.72], prof: 0.62 },
+    { n: chico ? 10 : 24,   r: [1.5, 3.0],  alfa: [0.50, 0.95], prof: 0.95 }
   ];
 
   let estrellas = [];
@@ -187,21 +187,37 @@
 
   /* --- cometas: aparecen de vez en cuando --- */
   const cometas = [];
+
+  /* OJO: antes el que entraba por la derecha arrancaba en x = 1.1 pero con
+     velocidad positiva, así que se iba hacia afuera y nunca se veía. La
+     mitad de los cometas se perdían. Ahora la dirección se decide primero
+     y de ahí sale por dónde entra. */
   function lanzarCometa() {
     if (lento) return;
-    const desdeArriba = Math.random() < 0.5;
+
+    const haciaIzquierda = Math.random() < 0.5;
+    const porArriba = Math.random() < 0.55;
+    const signo = haciaIzquierda ? -1 : 1;
+
     cometas.push({
-      x: desdeArriba ? Math.random() * 0.4 : 1.1,
-      y: desdeArriba ? -0.05 : Math.random() * 0.4,
-      vx: 0.0028 + Math.random() * 0.0030,
+      x: porArriba
+           ? (haciaIzquierda ? 0.62 + Math.random() * 0.45 : Math.random() * 0.38)
+           : (haciaIzquierda ? 1.07 : -0.07),
+      y: porArriba ? -0.05 : Math.random() * 0.38,
+      vx: (0.0028 + Math.random() * 0.0030) * signo,
       vy: 0.0016 + Math.random() * 0.0022,
       largo: 90 + Math.random() * 150,
       vida: 1
     });
-    if (cometas.length > 3) cometas.shift();
+    if (cometas.length > 5) cometas.shift();
   }
-  setInterval(() => { if (Math.random() < 0.55) lanzarCometa(); }, 4200);
-  setTimeout(lanzarCometa, 1800);
+
+  // window.__atmDebug = true antes de cargar, para poder contarlos
+  if (window.__atmDebug) { window.__atmCometas = cometas; window.__atmEstrellas = () => estrellas; }
+
+  setInterval(() => { if (Math.random() < 0.72) lanzarCometa(); }, 2600);
+  setTimeout(lanzarCometa, 1200);
+  setTimeout(lanzarCometa, 3400);
 
   function medir() {
     pr = Math.min(window.devicePixelRatio || 1, 2);
@@ -291,7 +307,9 @@
       y = ((y % alto) + alto) % alto;
       if (y < -12 || y > al + 12) continue;
 
-      const parpadeo = 0.68 + 0.32 * Math.sin(t * e.titila * 24 + e.fase);
+      // antes 0.68 + 0.32: el parpadeo apenas se notaba. Más recorrido y
+      // un poco más rápido, para que el cielo se sienta vivo.
+      const parpadeo = 0.56 + 0.44 * Math.sin(t * e.titila * 29 + e.fase);
       const alfa = e.a * parpadeo;
 
       ctx.beginPath();
@@ -312,7 +330,8 @@
     for (let i = cometas.length - 1; i >= 0; i--) {
       const c = cometas[i];
       c.x += c.vx; c.y += c.vy;
-      if (c.x > 1.25 || c.y > 1.25) { cometas.splice(i, 1); continue; }
+      // ahora también hay que recogerlos por la izquierda
+      if (c.x > 1.3 || c.x < -0.3 || c.y > 1.3) { cometas.splice(i, 1); continue; }
 
       const px = c.x * an, py = c.y * al;
 

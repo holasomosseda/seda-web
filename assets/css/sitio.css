@@ -68,7 +68,7 @@
   position: relative;
   font-size: 1.05rem;
   padding-block: 0.4rem;
-  color: var(--crema-tenue);
+  color: var(--crema-nav);
   transition: color var(--rapido) var(--curva);
 }
 

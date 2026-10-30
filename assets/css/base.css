@@ -7,7 +7,8 @@
   --tinta:        #002633;
   --tinta-honda:  #001A24;
   --crema:        #EEE5D1;
-  --crema-tenue:  rgba(238, 229, 209, 0.66);
+  --crema-tenue:  rgba(238, 229, 209, 0.78);
+  --crema-nav:    rgba(238, 229, 209, 0.92);  /* el nav compite con la nebulosa */
   --oro:          #D4B483;   /* acento: SOLO para lo interactivo */
   --oro-suave:    rgba(212, 180, 131, 0.5);
   --linea:        rgba(238, 229, 209, 0.14);
