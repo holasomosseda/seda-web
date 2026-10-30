@@ -16,6 +16,21 @@
 main,
 .sitio-pie { position: relative; z-index: 1; }
 
+/* --- intro: solo existe en el inicio y solo unos segundos --- */
+#seda-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;          /* por encima del header, que vive en 100 */
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--medio) var(--curva);
+}
+
+#seda-intro.saliendo { opacity: 0; }
+
+/* mientras el intro tapa la pantalla no tiene sentido poder desplazarse */
+body.intro-activo { overflow: hidden; }
+
 /* --- grano: ahora sí visible --- */
 body::after {
   content: '';
