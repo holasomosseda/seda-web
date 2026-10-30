@@ -84,8 +84,11 @@
   transition: transform var(--medio) var(--curva);
 }
 
-.sitio-nav a:hover,
 .sitio-nav a[aria-current="page"] { color: var(--crema); }
+
+/* al pasar el puntero el enlace se enciende a un blanco más fuerte
+   que el crema del sitio. Sin resplandor: solo sube de luz. */
+.sitio-nav a:hover { color: var(--crema-vivo); }
 
 .sitio-nav a:hover::after,
 .sitio-nav a[aria-current="page"]::after { transform: scaleX(1); }
