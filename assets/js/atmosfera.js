@@ -39,28 +39,28 @@
   const NEBULOSAS_IMG = {
     inicio: {
       src: '/assets/img/nebulosa-inicio.jpg',
-      opacidad: 0.90,
+      opacidad: 0.72,
       escala: 1.5,     // más grande que la pantalla, para que tenga de dónde moverse
       x: 0.68, y: 0.42,
       vel: 0.45        // qué tanto la arrastra el scroll (es la capa más lejana)
     },
     automatizacion: {
       src: '/assets/img/nebulosa-automatizacion.jpg',
-      opacidad: 0.90,
+      opacidad: 0.72,
       escala: 1.5,
       x: 0.70, y: 0.45,
       vel: 0.45
     },
     sitios: {
       src: '/assets/img/nebulosa-sitios.jpg',
-      opacidad: 0.90,
+      opacidad: 0.72,
       escala: 1.5,
       x: 0.72, y: 0.44,
       vel: 0.45
     },
     contacto: {
       src: '/assets/img/nebulosa-contacto.jpg',
-      opacidad: 0.90,
+      opacidad: 0.72,
       escala: 1.55,
       x: 0.74, y: 0.46,
       vel: 0.45

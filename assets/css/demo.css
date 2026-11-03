@@ -46,7 +46,7 @@
   background: linear-gradient(140deg, var(--oro), rgba(120, 90, 190, 0.9));
   color: var(--tinta);
   font-family: var(--fuente-dato);
-  font-size: 0.78rem;
+  font-size: 1.03rem;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -63,10 +63,10 @@
 }
 
 .chat-quien { display: flex; flex-direction: column; line-height: 1.3; }
-.chat-quien strong { font-size: 0.92rem; font-weight: 400; }
+.chat-quien strong { font-size: 1.05rem; font-weight: 400; }
 .chat-quien span {
   font-family: var(--fuente-dato);
-  font-size: 0.68rem;
+  font-size: 0.9rem;
   letter-spacing: 0.1em;
   color: var(--oro);
 }
@@ -95,7 +95,7 @@
   max-width: 82%;
   padding: 0.7rem 0.95rem;
   border-radius: 16px;
-  font-size: 0.9rem;
+  font-size: 1.03rem;
   line-height: 1.5;
   white-space: pre-line;
   animation: chatEntra 0.35s var(--curva) both;
@@ -118,7 +118,7 @@
   color: var(--tinta);
   border-bottom-right-radius: 5px;
   font-family: var(--fuente-dato);
-  font-size: 0.86rem;
+  font-size: 0.99rem;
 }
 
 /* los tres puntitos de "escribiendo" */
@@ -153,7 +153,7 @@
   background: var(--oro);
   color: var(--tinta);
   font-family: var(--fuente-dato);
-  font-size: 0.84rem;
+  font-size: 0.97rem;
   letter-spacing: 0.06em;
   animation: chatEntra 0.4s var(--curva) both;
   transition: transform var(--rapido) var(--curva),
@@ -187,7 +187,7 @@
   border-radius: 999px;
   padding: 0.65rem 1rem;
   font-family: var(--fuente-dato);
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: var(--crema);
   outline: none;
   transition: border-color var(--rapido) var(--curva);
@@ -228,7 +228,7 @@
   border-radius: 999px;
   padding: 0.6rem;
   font-family: var(--fuente-dato);
-  font-size: 0.72rem;
+  font-size: 0.99rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--crema-tenue);
@@ -240,7 +240,7 @@
 
 .nota-demo {
   font-family: var(--fuente-dato);
-  font-size: 0.74rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: var(--crema-tenue);
   margin-top: var(--e2);

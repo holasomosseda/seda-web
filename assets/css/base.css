@@ -18,12 +18,16 @@
   --fuente-titulo: 'Hubot Sans', system-ui, sans-serif;
   --fuente-dato:   'IBM Plex Mono', ui-monospace, monospace;
 
-  /* --- escala: subida un escalón en cuerpo y datos --- */
+  /* --- escala ---
+     Subida tras probarla con lectores de más de 55 años. La medición
+     que lo motivó: --t-dato caía en 14.4px y además es monoespaciada
+     con mucho espaciado, que se lee más chico de lo que mide. Nada
+     del sistema baja ya de 16px. */
   --t-gigante: clamp(2.6rem, 7vw, 6.5rem);
   --t-grande:  clamp(2.1rem, 4.4vw, 3.6rem);
-  --t-medio:   clamp(1.45rem, 2.2vw, 1.95rem);
-  --t-cuerpo:  clamp(1.08rem, 1.35vw, 1.3rem);
-  --t-dato:    clamp(0.84rem, 1vw, 0.95rem);
+  --t-medio:   clamp(1.52rem, 2.3vw, 2.05rem);
+  --t-cuerpo:  clamp(1.15rem, 1.45vw, 1.42rem);
+  --t-dato:    clamp(0.98rem, 1.14vw, 1.1rem);
 
   /* --- espacio --- */
   --e1: 0.5rem;
