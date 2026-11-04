@@ -10,19 +10,21 @@
   const caja = document.getElementById('bot-contacto');
   if (!caja) return;
 
-  const WHATSAPP = '524461113272';
+  const WHATSAPP = '525545883123';
 
   const hilo  = caja.querySelector('.chat-hilo');
   const forma = caja.querySelector('.chat-forma');
   const campo = caja.querySelector('.chat-campo');
 
+  /* Los textos NO viven aquí: viven en el diccionario de idioma.js.
+     Aquí solo quedan las claves, para que el bot hable el idioma que
+     el visitante eligió. */
+  const T = (k, d) => (window.SEDA ? window.SEDA.t(k, d) : k);
+
   const PASOS = [
-    { clave: 'negocio',  pregunta: '¿A qué se dedica tu negocio?',
-      pista: 'Panadería, escuela de idiomas, tienda de ropa…' },
-    { clave: 'problema', pregunta: 'Perfecto. ¿Qué es lo que repites todos los días y te gustaría quitarte de encima?',
-      pista: 'Contestar los mismos mensajes, agendar citas, cotizar…' },
-    { clave: 'nombre',   pregunta: 'Va. ¿Cómo te llamas?',
-      pista: 'Tu nombre' }
+    { clave: 'negocio',  pregunta: 'bot.cont.q1', pista: 'bot.cont.q1p' },
+    { clave: 'problema', pregunta: 'bot.cont.q2', pista: 'bot.cont.q2p' },
+    { clave: 'nombre',   pregunta: 'bot.cont.q3', pista: 'bot.cont.q3p' }
   ];
 
   let paso = 0;
@@ -57,17 +59,14 @@
 
   function preguntar() {
     const p = PASOS[paso];
-    responder(p.pregunta, paso === 0 ? 900 : 650, () => {
-      campo.placeholder = p.pista;
+    responder(T(p.pregunta), paso === 0 ? 900 : 650, () => {
+      campo.placeholder = T(p.pista);
       campo.focus();
     });
   }
 
   function armarMensaje() {
-    return `Hola, soy ${datos.nombre}.\n\n`
-         + `Mi negocio: ${datos.negocio}\n\n`
-         + `Lo que repito todos los días: ${datos.problema}\n\n`
-         + `Me gustaría ver si se puede automatizar.`;
+    return T('bot.cont.wa', datos);
   }
 
   /* el botón se crea YA con su enlace dentro del chat */
@@ -77,18 +76,15 @@
     enlace.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(armarMensaje())}`;
     enlace.target = '_blank';
     enlace.rel = 'noopener';
-    enlace.innerHTML = '<span>Enviar esto por WhatsApp</span>';
+    enlace.innerHTML = '<span></span>';
+    enlace.firstChild.textContent = T('bot.cont.boton');
     hilo.appendChild(enlace);
     hilo.scrollTop = hilo.scrollHeight;
   }
 
   function cerrar() {
-    const resumen = `Esto es lo que entendí:\n\n`
-                  + `Negocio: ${datos.negocio}\n`
-                  + `A resolver: ${datos.problema}`;
-
-    responder(resumen, 1000, () => {
-      responder(`${datos.nombre}, con esto ya puedo decirte algo útil. Pica el botón: se abre WhatsApp con tu mensaje ya escrito y solo le das enviar.`, 850, () => {
+    responder(T('bot.cont.resumen', datos), 1000, () => {
+      responder(T('bot.cont.cierre', datos), 850, () => {
         ponerBoton();
         caja.classList.add('terminado');
         terminado = true;
@@ -114,17 +110,32 @@
   });
 
   function arrancar() {
-    responder('Hola 👋 Soy el asistente de SEDA.', 600, () => {
-      responder('Te hago tres preguntas para entender tu caso, y te dejo listo el mensaje para enviármelo. Treinta segundos.', 900, preguntar);
+    responder(T('bot.cont.hola'), 600, () => {
+      responder(T('bot.cont.intro'), 900, preguntar);
     });
   }
 
+  /* Al cambiar de idioma se reinicia la conversación. Traducir las
+     burbujas ya escritas dejaría media charla en cada idioma. */
+  let arrancado = false;
+  document.addEventListener('seda:idioma', () => {
+    if (!arrancado) return;
+    hilo.innerHTML = '';
+    paso = 0; terminado = false;
+    for (const k in datos) delete datos[k];
+    caja.classList.remove('terminado');
+    campo.value = '';
+    campo.placeholder = T('bot.cont.ph');
+    arrancar();
+  });
+
   if ('IntersectionObserver' in window) {
     const ojo = new IntersectionObserver((e) => {
-      if (e[0].isIntersecting) { arrancar(); ojo.disconnect(); }
+      if (e[0].isIntersecting) { arrancado = true; arrancar(); ojo.disconnect(); }
     }, { threshold: 0.35 });
     ojo.observe(caja);
   } else {
+    arrancado = true;
     arrancar();
   }
 })();

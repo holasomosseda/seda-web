@@ -28,10 +28,14 @@
     { max: 999, talla: '4XL' }
   ];
 
+  /* Los textos viven en el diccionario de idioma.js, no aquí: si no,
+     el sitio cambia a inglés y el bot se queda en español. */
+  const T = (k, d) => (window.SEDA ? window.SEDA.t(k, d) : k);
+
   const PASOS = [
-    { clave: 'busto',   pregunta: '¿Cuál es tu medida de busto en centímetros? 📏', min: 60, max: 180 },
-    { clave: 'cintura', pregunta: 'Perfecto. ¿Y tu cintura, en centímetros?',       min: 45, max: 180 },
-    { clave: 'cadera',  pregunta: 'Última. ¿Tu cadera, en centímetros?',            min: 60, max: 200 }
+    { clave: 'busto',   pregunta: 'bot.tal.q1', min: 60, max: 180 },
+    { clave: 'cintura', pregunta: 'bot.tal.q2', min: 45, max: 180 },
+    { clave: 'cadera',  pregunta: 'bot.tal.q3', min: 60, max: 200 }
   ];
 
   let paso = 0;
@@ -77,20 +81,19 @@
     const talla = tallaDe(medidas.busto);
     const dif = Math.max(medidas.busto, medidas.cadera) - Math.min(medidas.busto, medidas.cadera);
 
-    let texto = `Tu talla recomendada es ${talla} ✨\n\n`
-              + `Busto ${medidas.busto.toFixed(1)} cm\n`
-              + `Cintura ${medidas.cintura.toFixed(1)} cm\n`
-              + `Cadera ${medidas.cadera.toFixed(1)} cm`;
+    let texto = T('bot.tal.res', {
+      talla:   talla,
+      busto:   medidas.busto.toFixed(1),
+      cintura: medidas.cintura.toFixed(1),
+      cadera:  medidas.cadera.toFixed(1)
+    });
 
-    if (dif > 14) {
-      texto += `\n\nTus medidas varían bastante entre sí. Si el conjunto es de dos piezas, `
-             + `puede convenirte una talla distinta arriba y abajo. Escríbeme y lo vemos.`;
-    }
+    if (dif > 14) texto += T('bot.tal.dif');
 
     responder(texto, 900);
 
     setTimeout(() => {
-      responder('¿Quieres que una persona te ayude a elegir? 💬', 500);
+      responder(T('bot.tal.ayuda'), 500);
       setTimeout(() => {
         caja.classList.add('terminado');
         terminado = true;
@@ -99,7 +102,7 @@
   }
 
   function preguntar() {
-    responder(PASOS[paso].pregunta, paso === 0 ? 900 : 650);
+    responder(T(PASOS[paso].pregunta), paso === 0 ? 900 : 650);
   }
 
   function procesar(valor) {
@@ -108,11 +111,11 @@
     const p = PASOS[paso];
 
     if (isNaN(n)) {
-      responder('No alcancé a entender ese número. Mándamelo solo en cifras, por ejemplo 92');
+      responder(T('bot.tal.nonum'));
       return;
     }
     if (n < p.min || n > p.max) {
-      responder(`Esa medida se sale de lo normal. ¿Seguro que está en centímetros? Intenta de nuevo.`);
+      responder(T('bot.tal.fuera'));
       return;
     }
 
@@ -136,29 +139,45 @@
 
   if (reiniciar) {
     reiniciar.addEventListener('click', () => {
-      hilo.innerHTML = '';
-      paso = 0; terminado = false;
-      delete medidas.busto; delete medidas.cintura; delete medidas.cadera;
-      caja.classList.remove('terminado');
+      limpiar();
       arrancar();
     });
   }
 
   function arrancar() {
-    responder('¡Hola! Soy el asesor de tallas de Marea Swim 🌊', 500);
+    responder(T('bot.tal.hola'), 500);
     setTimeout(() => {
-      responder('Te hago tres preguntas rápidas y te digo tu talla exacta.', 600);
+      responder(T('bot.tal.intro'), 600);
       setTimeout(preguntar, 1400);
     }, 1300);
   }
 
+  function limpiar() {
+    hilo.innerHTML = '';
+    paso = 0; terminado = false;
+    delete medidas.busto; delete medidas.cintura; delete medidas.cadera;
+    caja.classList.remove('terminado');
+  }
+
+  /* Al cambiar de idioma la conversación se reinicia: traducir las
+     burbujas ya escritas dejaría media charla en cada idioma. */
+  let arrancado = false;
+  document.addEventListener('seda:idioma', () => {
+    if (!arrancado) return;
+    limpiar();
+    campo.value = '';
+    campo.placeholder = T('bot.tal.ph');
+    arrancar();
+  });
+
   /* arranca solo cuando el demo entra en pantalla */
   if ('IntersectionObserver' in window) {
     const ojo = new IntersectionObserver((e) => {
-      if (e[0].isIntersecting) { arrancar(); ojo.disconnect(); }
+      if (e[0].isIntersecting) { arrancado = true; arrancar(); ojo.disconnect(); }
     }, { threshold: 0.4 });
     ojo.observe(caja);
   } else {
+    arrancado = true;
     arrancar();
   }
 })();

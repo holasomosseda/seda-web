@@ -41,11 +41,8 @@ const TEXTOS = {
     /* --- automatización --- */
     "auto.marca": "Automatización",
     "auto.titulo": "Sistemas que trabajan cuando tú no estás",
-    "auto.bajada": "Un negocio pierde clientes en los huecos: de noche, en fin de semana, cuando llegan veinte mensajes al mismo tiempo. Eso es lo que cerramos.",
-    "demo.etiqueta": "Pruébalo ahora",
-    "demo.titulo": "Un asesor de tallas, funcionando",
-    "demo.p1": "Esto no es un video ni una captura. Es un bot real corriendo en esta página. Escribe tus medidas y te dirá tu talla, igual que lo haría en el Instagram de una tienda.",
-    "demo.p2": "En un negocio real lleva tu marca, tu tabla de tallas y tus reglas. Si una clienta necesita ayuda humana, la conversación le llega a quien atiende, con las medidas ya tomadas.",
+    "auto.bajada": "Un negocio pierde clientes en los huecos: de noche, en fin de semana, cuando llegan veinte mensajes a la vez.",
+    "demo.p1": "Ese asesor de tallas de la izquierda no es un video: es un bot real corriendo aquí. Escribe tus medidas y te dice tu talla.",
     "demo.reiniciar": "Empezar de nuevo",
     "demo.nota": "Marca ficticia y tabla de tallas genérica, solo para esta demostración.",
     "auto.tipos.titulo": "Dos formas de automatizar",
@@ -97,16 +94,45 @@ const TEXTOS = {
     /* --- contacto --- */
     "cont.marca": "Contacto",
     "cont.titulo": "Cuéntame el problema",
-    "cont.bajada": "No necesito que sepas qué solución quieres. Necesito saber qué te quita tiempo. De ahí sale todo lo demás.",
-    "cont.chat.p1": "Tres preguntas y te armo el mensaje listo para enviar. Así cuando hablemos ya sé de qué se trata y no empezamos de cero.",
-    "cont.chat.p2": "Y sí: este bot es también una muestra. Es exactamente el tipo de cosa que construimos para que un negocio reciba prospectos con contexto en lugar de un «hola, info».",
+    "cont.bajada": "No necesito que sepas qué solución quieres. Necesito saber qué te quita tiempo.",
+    "cont.chat.p1": "El bot de la izquierda te hace tres preguntas y te arma el mensaje listo para enviar.",
     "cont.directo.titulo": "O directo, sin rodeos",
     "cont.wa.titulo": "WhatsApp",
     "cont.wa.desc": "Lo más rápido. Contesto el mismo día.",
     "cont.mail.titulo": "Correo",
     "cont.mail.desc": "Para propuestas, documentos o si prefieres dejarlo por escrito.",
     "cont.donde.titulo": "Dónde estamos",
-    "cont.donde.desc": "Querétaro, México. Trabajamos en remoto con negocios de cualquier ciudad, y en persona cuando el proyecto lo pide."
+    "cont.donde.desc": "Querétaro, México. Trabajamos en remoto con negocios de cualquier ciudad, y en persona cuando el proyecto lo pide.",
+
+    /* --- textos de los bots ---
+       Viven aquí y no dentro del JS de cada bot: si están sueltos en
+       el código, el sitio cambia de idioma y los bots no. {así} son
+       huecos que el bot rellena. --- */
+    "bot.cont.hola": "Hola 👋 Soy el asistente de SEDA.",
+    "bot.cont.intro": "Te hago tres preguntas para entender tu caso, y te dejo listo el mensaje para enviármelo. Treinta segundos.",
+    "bot.cont.q1": "¿A qué se dedica tu negocio?",
+    "bot.cont.q1p": "Panadería, escuela de idiomas, tienda de ropa…",
+    "bot.cont.q2": "Perfecto. ¿Qué es lo que repites todos los días y te gustaría quitarte de encima?",
+    "bot.cont.q2p": "Contestar los mismos mensajes, agendar citas, cotizar…",
+    "bot.cont.q3": "Va. ¿Cómo te llamas?",
+    "bot.cont.q3p": "Tu nombre",
+    "bot.cont.resumen": "Esto es lo que entendí:\n\nNegocio: {negocio}\nA resolver: {problema}",
+    "bot.cont.cierre": "{nombre}, con esto ya puedo decirte algo útil. Pica el botón: se abre WhatsApp con tu mensaje ya escrito y solo le das enviar.",
+    "bot.cont.boton": "Enviar esto por WhatsApp",
+    "bot.cont.wa": "Hola, soy {nombre}.\n\nMi negocio: {negocio}\n\nLo que repito todos los días: {problema}\n\nMe gustaría ver si se puede automatizar.",
+    "bot.cont.ph": "Escribe aquí…",
+
+    "bot.tal.hola": "¡Hola! Soy el asesor de tallas de Marea Swim 🌊",
+    "bot.tal.intro": "Te hago tres preguntas rápidas y te digo tu talla exacta.",
+    "bot.tal.q1": "¿Cuál es tu medida de busto en centímetros? 📏",
+    "bot.tal.q2": "Perfecto. ¿Y tu cintura, en centímetros?",
+    "bot.tal.q3": "Última. ¿Tu cadera, en centímetros?",
+    "bot.tal.res": "Tu talla recomendada es {talla} ✨\n\nBusto {busto} cm\nCintura {cintura} cm\nCadera {cadera} cm",
+    "bot.tal.dif": "\n\nTus medidas varían bastante entre sí. Si el conjunto es de dos piezas, puede convenirte una talla distinta arriba y abajo. Escríbeme y lo vemos.",
+    "bot.tal.ayuda": "¿Quieres que una persona te ayude a elegir? 💬",
+    "bot.tal.nonum": "No alcancé a entender ese número. Mándamelo solo en cifras, por ejemplo 92",
+    "bot.tal.fuera": "Esa medida se sale de lo normal. ¿Seguro que está en centímetros? Intenta de nuevo.",
+    "bot.tal.ph": "Escribe tu medida…"
   },
 
   en: {
@@ -146,11 +172,8 @@ const TEXTOS = {
     /* --- automation --- */
     "auto.marca": "Automation",
     "auto.titulo": "Systems that work when you don't",
-    "auto.bajada": "A business loses customers in the gaps: at night, on weekends, when twenty messages land at once. Closing those gaps is the job.",
-    "demo.etiqueta": "Try it now",
-    "demo.titulo": "A size advisor, actually running",
-    "demo.p1": "This isn't a video or a screenshot. It's a real bot running on this page. Type your measurements and it will tell you your size, exactly as it would inside a store's Instagram.",
-    "demo.p2": "In a real business it carries your brand, your size chart and your rules. If a customer needs a human, the chat reaches whoever handles it — measurements already taken.",
+    "auto.bajada": "A business loses customers in the gaps: at night, on weekends, when twenty messages land at once.",
+    "demo.p1": "That size advisor on the left isn't a video: it's a real bot running here. Type your measurements and it tells you your size.",
     "demo.reiniciar": "Start over",
     "demo.nota": "Fictional brand and generic size chart, for this demonstration only.",
     "auto.tipos.titulo": "Two ways to automate",
@@ -202,16 +225,42 @@ const TEXTOS = {
     /* --- contact --- */
     "cont.marca": "Contact",
     "cont.titulo": "Tell me the problem",
-    "cont.bajada": "You don't need to know what solution you want. I need to know what's eating your time. Everything else follows from there.",
-    "cont.chat.p1": "Three questions and I'll put the message together for you, ready to send. That way, when we talk, I already know what it's about.",
-    "cont.chat.p2": "And yes: this bot is also a sample. It's exactly the kind of thing we build so a business receives leads with context instead of a bare «hi, info?».",
+    "cont.bajada": "You don't need to know what solution you want. I need to know what's eating your time.",
+    "cont.chat.p1": "The bot on the left asks you three questions and puts together the message, ready to send.",
     "cont.directo.titulo": "Or straight to the point",
     "cont.wa.titulo": "WhatsApp",
     "cont.wa.desc": "Fastest route. I reply the same day.",
     "cont.mail.titulo": "Email",
     "cont.mail.desc": "For proposals, documents, or if you'd rather put it in writing.",
     "cont.donde.titulo": "Where we are",
-    "cont.donde.desc": "Querétaro, Mexico. We work remotely with businesses in any city, and in person when the project calls for it."
+    "cont.donde.desc": "Querétaro, Mexico. We work remotely with businesses in any city, and in person when the project calls for it.",
+
+    /* --- bot copy --- */
+    "bot.cont.hola": "Hi 👋 I'm SEDA's assistant.",
+    "bot.cont.intro": "Three questions to understand your case, and I'll leave the message ready for you to send me. Thirty seconds.",
+    "bot.cont.q1": "What does your business do?",
+    "bot.cont.q1p": "Bakery, language school, clothing store…",
+    "bot.cont.q2": "Got it. What do you repeat every single day that you'd like off your plate?",
+    "bot.cont.q2p": "Answering the same messages, booking appointments, quoting…",
+    "bot.cont.q3": "Right. What's your name?",
+    "bot.cont.q3p": "Your name",
+    "bot.cont.resumen": "Here's what I understood:\n\nBusiness: {negocio}\nTo solve: {problema}",
+    "bot.cont.cierre": "{nombre}, that's enough for me to tell you something useful. Hit the button: WhatsApp opens with your message already written, you just send it.",
+    "bot.cont.boton": "Send this on WhatsApp",
+    "bot.cont.wa": "Hi, I'm {nombre}.\n\nMy business: {negocio}\n\nWhat I repeat every day: {problema}\n\nI'd like to see whether it can be automated.",
+    "bot.cont.ph": "Type here…",
+
+    "bot.tal.hola": "Hi! I'm the Marea Swim size advisor 🌊",
+    "bot.tal.intro": "Three quick questions and I'll tell you your exact size.",
+    "bot.tal.q1": "What's your bust measurement in centimetres? 📏",
+    "bot.tal.q2": "Great. And your waist, in centimetres?",
+    "bot.tal.q3": "Last one. Your hips, in centimetres?",
+    "bot.tal.res": "Your recommended size is {talla} ✨\n\nBust {busto} cm\nWaist {cintura} cm\nHips {cadera} cm",
+    "bot.tal.dif": "\n\nYour measurements vary quite a bit between them. If it's a two-piece set, a different size top and bottom may suit you better. Write to me and we'll work it out.",
+    "bot.tal.ayuda": "Want a person to help you choose? 💬",
+    "bot.tal.nonum": "I couldn't read that number. Send it as digits only, for example 92",
+    "bot.tal.fuera": "That measurement is outside the usual range. Are you sure it's in centimetres? Try again.",
+    "bot.tal.ph": "Type your measurement…"
   }
 };
 
@@ -234,15 +283,47 @@ function idiomaInicial() {
   return "es";
 }
 
+/* ===========================================================
+   Puente para los bots
+
+   Los bots necesitan dos cosas que el diccionario no daba: saber en
+   qué idioma está el sitio AHORA, y enterarse cuando cambia. Sin
+   esto, cambiabas a inglés y los bots seguían en español.
+   =========================================================== */
+
+window.SEDA = {
+  idioma: "es",
+
+  /* Devuelve un texto del diccionario, rellenando los huecos {así}.
+     Si falta la clave devuelve la clave: así un olvido se ve en
+     pantalla en vez de dejar una burbuja vacía. */
+  t: function (clave, datos) {
+    const dic = TEXTOS[window.SEDA.idioma] || TEXTOS.es;
+    let s = dic[clave] || TEXTOS.es[clave] || clave;
+    if (datos) {
+      for (const k in datos) s = s.split("{" + k + "}").join(datos[k]);
+    }
+    return s;
+  }
+};
+
 function aplicarIdioma(lang) {
   const t = TEXTOS[lang];
   if (!t) return;
 
+  const cambio = window.SEDA.idioma !== lang;
+  window.SEDA.idioma = lang;
   document.documentElement.lang = lang;
 
   document.querySelectorAll("[data-t]").forEach(el => {
     const clave = el.getAttribute("data-t");
     if (t[clave]) el.textContent = t[clave];
+  });
+
+  // los placeholders no son contenido, son atributos: van aparte
+  document.querySelectorAll("[data-t-ph]").forEach(el => {
+    const clave = el.getAttribute("data-t-ph");
+    if (t[clave]) el.placeholder = t[clave];
   });
 
   document.title = t["meta.titulo"];
@@ -254,6 +335,14 @@ function aplicarIdioma(lang) {
   });
 
   try { localStorage.setItem("seda_idioma", lang); } catch (e) {}
+
+  /* Aviso para los bots. Solo cuando de verdad cambió: en la carga
+     inicial no hay nada que reiniciar. Cada bot se vuelve a arrancar
+     en el idioma nuevo — traducir las burbujas ya escritas dejaría
+     media conversación en cada idioma. */
+  if (cambio) {
+    document.dispatchEvent(new CustomEvent("seda:idioma", { detail: lang }));
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -87,9 +87,9 @@
 
 .sitio-nav a {
   position: relative;
-  font-size: 1.22rem;
+  font-size: 1.52rem;
   padding-block: 0.4rem;
-  color: var(--crema-nav);
+  color: var(--crema);
   transition: color var(--rapido) var(--curva);
 }
 
@@ -287,8 +287,9 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
 
 .pagina-bot .bloque-bot {
   display: grid;
-  grid-template-columns: 1fr minmax(0, 470px);
-  gap: var(--e3);
+  /* el bot a la izquierda y primero; el texto lo acompaña, no al revés */
+  grid-template-columns: minmax(0, 430px) 1fr;
+  gap: var(--e4);
   align-items: center;
   /* el header es fijo y mide ~126px: sin este margen el contenido se
      le mete por debajo. Las otras páginas lo libran porque su hero
@@ -319,11 +320,18 @@ body.menu-abierto .abrir-menu span:nth-child(3) {
 
 .pagina-bot .bloque-chat .dato { text-align: center; }
 
-/* El bot es el protagonista de esta página, así que va más grande que
-   en el demo de Automatización — no al revés. El espacio sale de las
-   tarjetas de abajo, que son un dato de contacto y no una sección. */
-.pagina-bot .chat { max-width: 470px; }
-.pagina-bot .chat-hilo { height: 360px; }
+/* Proporción de celular, un poco más ancho. No llega al 9:19.5 de un
+   teléfono de verdad: a 460px de ancho eso serían ~1000px de alto y no
+   cabría en pantalla. Así que crece con la ventana y se detiene antes
+   de salirse — en una pantalla de 900px queda en ~710px de alto. */
+.pagina-bot .chat { max-width: 430px; }
+
+/* El hilo es lo que manda el alto: el resto del chat (barra + forma) mide
+   ~149px fijos. 600px aquí dejan el bot en ~749x430, o sea 1.74 — la
+   silueta de un teléfono un poco más ancho. En ventanas bajas se encoge
+   hasta 420: ahí no caben las dos cosas y preferimos que el campo de
+   escritura quede a la vista a que conserve la proporción. */
+.pagina-bot .chat-hilo { height: clamp(420px, calc(100vh - 300px), 600px); }
 
 .contacto .contacto-abajo { padding-block: var(--e2) var(--e2); }
 
@@ -369,9 +377,8 @@ body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
        se le mete por debajo y la etiqueta no se alcanza a leer */
     padding-block: calc(var(--e5) + var(--e2)) var(--e2);
   }
-  .pagina-bot .bloque-dicho { order: 2; }
-  .pagina-bot .bloque-chat   { order: 1; }
-  .pagina-bot .chat-hilo { height: 300px; }
+  /* el orden ya lo da el DOM: el chat va primero en el HTML */
+  .pagina-bot .chat-hilo { height: clamp(300px, 46vh, 420px); }
 }
 
 .encabezado-seccion {
