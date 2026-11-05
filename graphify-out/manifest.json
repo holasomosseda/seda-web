@@ -1,0 +1,62 @@
+{
+  "assets/js/atmosfera.js": {
+    "mtime": 1793744480.26074,
+    "seen": 1793843466.0542998,
+    "ast_hash": "043ed8e903b45095939118639ab353ac",
+    "semantic_hash": "043ed8e903b45095939118639ab353ac"
+  },
+  "assets/js/contacto.js": {
+    "mtime": 1793765061.534067,
+    "seen": 1793843466.0543082,
+    "ast_hash": "c75a81c264037d860c551bf269f327a9",
+    "semantic_hash": "c75a81c264037d860c551bf269f327a9"
+  },
+  "assets/js/demo-tallas.js": {
+    "mtime": 1793765061.5342715,
+    "seen": 1793843466.054313,
+    "ast_hash": "3d36f11cb860b3128280cd48c409e044",
+    "semantic_hash": "3d36f11cb860b3128280cd48c409e044"
+  },
+  "assets/js/idioma.js": {
+    "mtime": 1793772505.7045527,
+    "seen": 1793843466.054316,
+    "ast_hash": "d14a0e43218ebfeed3f2cd45f98850dc",
+    "semantic_hash": "d14a0e43218ebfeed3f2cd45f98850dc"
+  },
+  "assets/js/intro.js": {
+    "mtime": 1793404309.6608672,
+    "seen": 1793843466.05432,
+    "ast_hash": "2e0d1d4ce19d8763322152e47553b60c",
+    "semantic_hash": "2e0d1d4ce19d8763322152e47553b60c"
+  },
+  "assets/js/sitio.js": {
+    "mtime": 1793322812.2810156,
+    "seen": 1793843466.054323,
+    "ast_hash": "a465ae4142f02e43c5f7833a21159f3c",
+    "semantic_hash": "a465ae4142f02e43c5f7833a21159f3c"
+  },
+  "assets/video/intro-169.mp4": {
+    "mtime": 1793328165.8014498,
+    "seen": 1793843466.054327,
+    "ast_hash": "67e539ef1750d47e04c9f7b74ea589c3",
+    "semantic_hash": "67e539ef1750d47e04c9f7b74ea589c3"
+  },
+  "assets/video/intro-169.webm": {
+    "mtime": 1793328165.8020878,
+    "seen": 1793843466.05433,
+    "ast_hash": "6fcfdb932ccd18cd46253caa72f0a080",
+    "semantic_hash": "6fcfdb932ccd18cd46253caa72f0a080"
+  },
+  "assets/video/intro-916.mp4": {
+    "mtime": 1793328165.802647,
+    "seen": 1793843466.054334,
+    "ast_hash": "1922ebb339d46c424dc620d4ee2e2f07",
+    "semantic_hash": "1922ebb339d46c424dc620d4ee2e2f07"
+  },
+  "assets/video/intro-916.webm": {
+    "mtime": 1793328165.8030689,
+    "seen": 1793843466.054337,
+    "ast_hash": "736ae7ca018c1eb91fdf57c29df30d67",
+    "semantic_hash": "736ae7ca018c1eb91fdf57c29df30d67"
+  }
+}
