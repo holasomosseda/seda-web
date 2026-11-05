@@ -71,6 +71,12 @@ body {
 }
 
 img, svg, video { display: block; max-width: 100%; height: auto; }
+
+/* Esta regla de arriba le gana al `[hidden]` del navegador, porque los
+   estilos de autor mandan sobre los del agente de usuario. O sea que
+   hasta el 4 de noviembre un <video hidden> se seguia viendo. Vale para
+   cualquier elemento con `hidden`, no solo video. */
+[hidden] { display: none !important; }
 button, input, textarea, select { font: inherit; color: inherit; }
 ul, ol { list-style: none; }
 a { color: inherit; text-decoration: none; }

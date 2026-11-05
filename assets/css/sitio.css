@@ -371,7 +371,11 @@ body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
 @media (max-width: 860px) {
   /* en celular se apila y el bot va primero, que es el punto */
   .pagina-bot .bloque-bot {
-    grid-template-columns: 1fr;
+    /* `minmax(0, 1fr)` y no `1fr` pelado: un `1fr` es `minmax(auto, 1fr)`
+       y ese `auto` no deja que la pista encoja abajo del ancho mínimo de
+       su contenido. El chat forzaba la pista a ~320px cuando solo había
+       272 disponibles, y se desbordaba 24px a 320px de ancho. Medido. */
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--e3);
     /* el bot queda hasta arriba y el header es fijo: sin este espacio
        se le mete por debajo y la etiqueta no se alcanza a leer */
@@ -396,7 +400,10 @@ body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
 .rejilla {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* El `min(300px, 100%)` y no `300px` pelado: con el valor fijo la
+     pista no puede encoger abajo de 300 y la tarjeta se desborda en
+     pantallas angostas. Medido: 4px fuera a 320px de ancho. */
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: var(--e3);
 }
 
@@ -581,4 +588,93 @@ body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
    (iPhone SE) todavía sobran 39px en el header. No ocultarlas. */
 @media (max-width: 420px) {
   .sitio-nav a { font-size: 1.65rem; }
+}
+
+/* ===========================================================
+   El mini agente — solo en Smart Webs (sitios.html)
+
+   En escritorio sale del flujo y se va al aire muerto de la derecha:
+   así el titular y el botón se quedan EXACTAMENTE donde estaban. Medido
+   antes y después: el botón termina en 804 (1500x900) y 757 (1280x720),
+   los mismos valores que sin el agente.
+
+   La holgura mínima contra el texto es de 82px en 1500x900 y crece en
+   todo lo demás. Si algún día se alarga el titular, remedir antes.
+
+   En celular no hay aire a la derecha, así que se apila: el orden lo da
+   el DOM, donde ya va antes del botón.
+   =========================================================== */
+
+.hero-agente { position: relative; }
+
+/* `right: 0` y no un valor negativo: la caja de `.limite` llega hasta el
+   borde de la ventana en anchos chicos, así que cualquier negativo aquí
+   mete barra horizontal. Medido: con -16px se desbordaba 16px en 1280. */
+.agente {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* El <video> nunca se ve: solo alimenta al lienzo, que es el que lleva
+   el recorte. */
+.agente video { display: none; }
+
+.agente canvas {
+  display: block;
+  width: clamp(200px, 25vw, 380px);
+  height: auto;
+  opacity: 0;
+  transition: opacity var(--lento) var(--curva);
+}
+
+/* agente.js la pone cuando ya pintó el primer cuadro, para que no se
+   vea un rectángulo vacío mientras carga el video. */
+.agente canvas.visible { opacity: 1; }
+
+/* En celular el agente ya no vive en el hero: agente.js lo muda a
+   "La prueba es dónde estás parado". Ahí va en el flujo normal y no
+   pelea con nada. Ver el comentario de la mudanza en agente.js. */
+@media (max-width: 860px) {
+  .agente {
+    position: static;
+    transform: none;
+    margin-top: var(--e3);
+  }
+  .agente canvas { width: min(280px, 72vw); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agente canvas { transition: none; }
+}
+
+/* ===========================================================
+   El CTA del hero en ventanas bajas
+
+   El hero es 100svh con 320px de padding (--e6 arriba, --e5 abajo).
+   En cuanto la ventana baja de ~940px de alto, el contenido no cabe y
+   el CTA se va fuera de pantalla. Medido el 4 de noviembre, sin tocar
+   nada todavía:
+
+     index.html    1500x900 -54px · 1366x768 -140px · 1280x720 -163px
+     sitios.html   1366x768  -2px · 1280x720  -37px
+
+   O sea que "AGENDA UN DEMO", el único botón de la página principal,
+   estaba invisible en casi cualquier laptop.
+
+   Arriba de 940px de alto esto no aplica y el hero se ve como siempre.
+   El contenido sigue centrado por el `justify-content: center`, así que
+   recortar el padding no lo descuadra: solo deja de empujar cuando no
+   hay lugar.
+
+   Queda fuera: sitios.html a 320x568 sigue en -105px. Su bajada son
+   cinco líneas de monoespaciada y no hay de dónde recortar sin tocar
+   el texto.
+   =========================================================== */
+
+@media (max-height: 940px) {
+  .hero { padding-block: var(--e3) var(--e3); }
+  .hero .bajada { margin-bottom: var(--e3); }
 }

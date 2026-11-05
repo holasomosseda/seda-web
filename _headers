@@ -1,0 +1,26 @@
+# Cabeceras de Cloudflare Pages
+#
+# Por qué existe este archivo: el 3 de noviembre se subió un cambio que
+# tocaba sitios.html y sitio.css a la vez. El HTML nuevo llegó al
+# visitante, el CSS viejo se quedó en caché, y la página salió rota en
+# escritorio y en celular al mismo tiempo. El HTML y sus hojas tienen que
+# viajar juntos.
+#
+# Los nombres de archivo del proyecto no llevan hash, así que la única
+# forma de garantizar que un cambio de CSS o JS se vea es obligar a
+# revalidar. Con ETag la respuesta es un 304 vacío cuando no cambió
+# nada, así que el costo es mínimo.
+
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Los videos y las imágenes sí se cachean largo: si alguno cambia, se
+# cambia el nombre del archivo.
+/assets/video/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
