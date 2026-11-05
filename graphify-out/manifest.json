@@ -18,10 +18,10 @@
     "semantic_hash": "3d36f11cb860b3128280cd48c409e044"
   },
   "assets/js/idioma.js": {
-    "mtime": 1793772505.7045527,
-    "seen": 1793843466.054316,
-    "ast_hash": "d14a0e43218ebfeed3f2cd45f98850dc",
-    "semantic_hash": "d14a0e43218ebfeed3f2cd45f98850dc"
+    "mtime": 1793845516.7705128,
+    "seen": 1793845531.698208,
+    "ast_hash": "941e87660147676e5ad03097cad35caa",
+    "semantic_hash": ""
   },
   "assets/js/intro.js": {
     "mtime": 1793404309.6608672,
@@ -58,5 +58,95 @@
     "seen": 1793843466.054337,
     "ast_hash": "736ae7ca018c1eb91fdf57c29df30d67",
     "semantic_hash": "736ae7ca018c1eb91fdf57c29df30d67"
+  },
+  ".claude/settings.json": {
+    "mtime": 1793843629.0378754,
+    "seen": 1793845531.6981812,
+    "ast_hash": "c3c75ba2920ebf4dd5d1599238845c34",
+    "semantic_hash": ""
+  },
+  "assets/js/agente.js": {
+    "mtime": 1793845516.7703457,
+    "seen": 1793845531.698189,
+    "ast_hash": "64ef01d2fc7dea1135e2bfa65a586e4d",
+    "semantic_hash": ""
+  },
+  "verificar.js": {
+    "mtime": 1793844678.6285558,
+    "seen": 1793845531.6982179,
+    "ast_hash": "bf88b7f965b9eebc03997f79fc59a78b",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1793843629.037113,
+    "seen": 1793845531.6982222,
+    "ast_hash": "67d88e9d0760c3ba54c75dfd9551c1c5",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1793322812.278721,
+    "seen": 1793845531.6982248,
+    "ast_hash": "44c4d192654644957e4fab309440d9c9",
+    "semantic_hash": ""
+  },
+  "automatizacion.html": {
+    "mtime": 1793765061.534684,
+    "seen": 1793845531.698228,
+    "ast_hash": "c704519ca1a4fb30cbfebd8875df79be",
+    "semantic_hash": ""
+  },
+  "contacto.html": {
+    "mtime": 1793765061.534891,
+    "seen": 1793845531.698231,
+    "ast_hash": "a854fd5a087ac78a19895dfb8bc69a44",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1793765061.5350423,
+    "seen": 1793845531.698234,
+    "ast_hash": "1fe1cd8e8f78e7d2e0079020071e089d",
+    "semantic_hash": ""
+  },
+  "sitios.html": {
+    "mtime": 1793845516.7710993,
+    "seen": 1793845531.698237,
+    "ast_hash": "63687f7a42ca4a4fbab27a1b238cfab4",
+    "semantic_hash": ""
+  },
+  "assets/img/nebulosa-automatizacion.jpg": {
+    "mtime": 1793384264.6259248,
+    "seen": 1793845531.69824,
+    "ast_hash": "f1f0d64e1c8ccd161b8d2bd17a6852f5",
+    "semantic_hash": ""
+  },
+  "assets/img/nebulosa-contacto.jpg": {
+    "mtime": 1793385545.1934073,
+    "seen": 1793845531.6982431,
+    "ast_hash": "07ffbba1aeef60d4e1f931b41effbbe9",
+    "semantic_hash": ""
+  },
+  "assets/img/nebulosa-inicio.jpg": {
+    "mtime": 1793329668.7005026,
+    "seen": 1793845531.698246,
+    "ast_hash": "ffe4d489952d07dfbcb15b1de72f6a50",
+    "semantic_hash": ""
+  },
+  "assets/img/nebulosa-sitios.jpg": {
+    "mtime": 1793385545.193624,
+    "seen": 1793845531.698251,
+    "ast_hash": "e36a807b1e4bad5c5532c5557904fb94",
+    "semantic_hash": ""
+  },
+  "assets/video/sagent.mp4": {
+    "mtime": 1793845516.7707348,
+    "seen": 1793845531.698269,
+    "ast_hash": "01aec5eb23d47fcbe41f5893e46d957e",
+    "semantic_hash": ""
+  },
+  "assets/video/sagent.webm": {
+    "mtime": 1793845516.7709303,
+    "seen": 1793845531.698272,
+    "ast_hash": "f03d13fd29ab5b32f3d5ad671244fff8",
+    "semantic_hash": ""
   }
 }

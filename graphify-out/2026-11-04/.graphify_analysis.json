@@ -1,0 +1,125 @@
+{
+  "communities": {
+    "0": [
+      "assets_js_demo_tallas",
+      "assets_js_demo_tallas_arrancar",
+      "assets_js_demo_tallas_burbuja",
+      "assets_js_demo_tallas_escribiendo",
+      "assets_js_demo_tallas_limpiar",
+      "assets_js_demo_tallas_preguntar",
+      "assets_js_demo_tallas_procesar",
+      "assets_js_demo_tallas_responder",
+      "assets_js_demo_tallas_resultado",
+      "assets_js_demo_tallas_tallade"
+    ],
+    "1": [
+      "assets_js_contacto",
+      "assets_js_contacto_armarmensaje",
+      "assets_js_contacto_arrancar",
+      "assets_js_contacto_burbuja",
+      "assets_js_contacto_cerrar",
+      "assets_js_contacto_escribiendo",
+      "assets_js_contacto_ponerboton",
+      "assets_js_contacto_preguntar",
+      "assets_js_contacto_responder"
+    ],
+    "2": [
+      "assets_js_atmosfera",
+      "assets_js_atmosfera_encuadre",
+      "assets_js_atmosfera_gasen",
+      "assets_js_atmosfera_girar",
+      "assets_js_atmosfera_lanzarcometa",
+      "assets_js_atmosfera_medir",
+      "assets_js_atmosfera_sembrar"
+    ],
+    "3": [
+      "assets_js_intro",
+      "assets_js_intro_destapar",
+      "assets_js_intro_programarfundido",
+      "assets_js_intro_saltar",
+      "assets_js_intro_terminar",
+      "assets_js_intro_traza"
+    ],
+    "4": [
+      "assets_js_sitio",
+      "assets_js_sitio_btnmenu",
+      "assets_js_sitio_encabezado",
+      "assets_js_sitio_navsitio",
+      "assets_js_sitio_poraparecer"
+    ],
+    "5": [
+      "assets_js_idioma",
+      "assets_js_idioma_aplicaridioma",
+      "assets_js_idioma_idiomainicial",
+      "assets_js_idioma_textos"
+    ]
+  },
+  "cohesion": {
+    "0": 0.4222222222222222,
+    "1": 0.4444444444444444,
+    "2": 0.47619047619047616,
+    "3": 0.6,
+    "4": 0.4,
+    "5": 0.5
+  },
+  "gods": [
+    {
+      "id": "assets_js_demo_tallas_responder",
+      "label": "responder()",
+      "degree": 7
+    },
+    {
+      "id": "assets_js_contacto_responder",
+      "label": "responder()",
+      "degree": 6
+    },
+    {
+      "id": "assets_js_demo_tallas_preguntar",
+      "label": "preguntar()",
+      "degree": 4
+    },
+    {
+      "id": "assets_js_demo_tallas_procesar",
+      "label": "procesar()",
+      "degree": 4
+    },
+    {
+      "id": "assets_js_demo_tallas_resultado",
+      "label": "resultado()",
+      "degree": 4
+    },
+    {
+      "id": "assets_js_contacto_cerrar",
+      "label": "cerrar()",
+      "degree": 4
+    },
+    {
+      "id": "assets_js_atmosfera_gasen",
+      "label": "gasEn()",
+      "degree": 4
+    },
+    {
+      "id": "assets_js_intro_terminar",
+      "label": "terminar()",
+      "degree": 4
+    },
+    {
+      "id": "assets_js_demo_tallas_arrancar",
+      "label": "arrancar()",
+      "degree": 3
+    },
+    {
+      "id": "assets_js_contacto_arrancar",
+      "label": "arrancar()",
+      "degree": 3
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `cerrar()` connect `contacto.js` to `sitio.js`?",
+      "why": "High betweenness centrality (0.052) - this node is a cross-community bridge."
+    }
+  ]
+}

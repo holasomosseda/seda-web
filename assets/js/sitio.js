@@ -24,7 +24,12 @@ if (porAparecer.length && 'IntersectionObserver' in window) {
         vigilante.unobserve(entrada.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    /* Umbral 0 y margen positivo abajo: el bloque arranca a aparecer
+       cuando todavía le falta media pantalla para entrar, así que para
+       cuando lo ves ya terminó. Antes pedía 15% visible Y 60px dentro,
+       y en celular —donde los bloques son altos— eso llegaba tardísimo:
+       se sentía que la página cargaba lento. */
+  }, { threshold: 0, rootMargin: '0px 0px 45% 0px' });
 
   porAparecer.forEach((el) => vigilante.observe(el));
 } else {

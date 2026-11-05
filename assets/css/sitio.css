@@ -505,11 +505,14 @@ body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
    APARICIÓN AL HACER SCROLL
    =========================================================== */
 
+/* `--medio` y no `--lento`: a .9s el bloque todavía se estaba pintando
+   cuando ya lo tenías enfrente y se sentía que cargaba lento. El disparo
+   también se adelantó en sitio.js. */
 .aparece {
   opacity: 0;
   transform: translateY(26px);
-  transition: opacity var(--lento) var(--curva),
-              transform var(--lento) var(--curva);
+  transition: opacity var(--medio) var(--curva),
+              transform var(--medio) var(--curva);
 }
 
 .aparece.visible { opacity: 1; transform: none; }
@@ -675,6 +678,13 @@ body:has(.contacto) .sitio-pie { padding-block: var(--e2); }
    =========================================================== */
 
 @media (max-height: 940px) {
-  .hero { padding-block: var(--e3) var(--e3); }
+  /* El padding de arriba NO baja de 136px: el header es `position: fixed`
+     y mide hasta y=115 en celular y y=129 en escritorio. Con --e3 (32px)
+     el "SISTEMAS Y EDUCACIÓN…" se montaba encima del logo y de las
+     banderas. Medido el 4 de noviembre en un teléfono real.
+     Lo que se recorta es lo de abajo, que no choca con nada. */
+  .hero { padding-block: 136px var(--e3); }
+  .hero .dato { margin-bottom: var(--e2); }
+  .hero h1 { margin-bottom: var(--e2); }
   .hero .bajada { margin-bottom: var(--e3); }
 }
